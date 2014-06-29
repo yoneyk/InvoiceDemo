@@ -6,6 +6,9 @@ using System.Collections;
 partial class InvoiceApp : Json {
     static void Main() {
         Starcounter.Handle.GET("/", (Request r) => {
+            if (Session.Current != null)
+                return Session.Current.Data;
+
             var invoiceApp = new InvoiceApp() {
                 Html = "/invoiceapp.html"
             };
