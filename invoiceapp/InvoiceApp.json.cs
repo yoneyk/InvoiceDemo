@@ -46,9 +46,12 @@ partial class InvoiceApp : Json {
         void Handle(Input.Save action) {
 
             var invoice = (Invoice)this.Data;
-            invoice.InvoiceNo = Db.SQL<int>("SELECT max(o.InvoiceNo) FROM Invoice o").First + 1;
+            invoice.InvoiceNo = (int)Db.SQL<Int64>("SELECT max(o.InvoiceNo) FROM Invoice o").First + 1;
 
             this.Transaction.Commit();
+
+            ((InvoiceApp)this.Parent).Invoices = SQL("SELECT I FROM Invoice I"); //refresh invoices list
+
         }
         void Handle(Input.Cancel action) {
             this.Transaction.Rollback();
