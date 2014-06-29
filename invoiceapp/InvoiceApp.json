@@ -1,0 +1,24 @@
+{
+	Html:"",
+
+	Invoices:[{
+		InvoiceNo:0,
+		Name:"",
+		Total:0.0,
+		Show$:null
+	}],
+
+	Add$: null,
+
+	Invoice: {
+		InvoiceNo:0,
+		Name$:"",
+		Total:0.0,
+		Items: [
+		{ Description$:"", Quantity$:0, Price$:0.0, Total:0.0 }
+		],
+		Save$:null,
+		Cancel$:null,
+		Delete$:null
+	}
+}

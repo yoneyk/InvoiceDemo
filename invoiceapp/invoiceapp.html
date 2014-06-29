@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<head>
+    <title>Invoice app</title>
+    <script src="/bower_components/platform/platform.js"></script>
+    <link rel="import" href="/sys/starcounter.html" />
+    <style> table { border-collapse: collapse; } table, td, th { border: 1px solid black; } </style>
+</head>
+<body>
+    <template bind id="root">
+        <h3>Invoices</h3>
+        <table>
+            <thead>
+                    <tr><th>#</th><th>Name</th><th>Total</th><th></th></tr>
+            </thead>
+            <tbody>
+                <template repeat="{{ invoice in Invoices }}">
+                    <tr>
+                        <td>{{invoice.InvoiceNo}}</td>
+                        <td>{{invoice.Name}}</td>
+                        <td>{{invoice.Total}}</td>
+                        <td><button onclick="getModel(this).invoice.Show$ = null">Show</button></td>
+                    </tr>
+                    </template>
+            </tbody>
+        </table>
+        <button onclick="getModel(this).Add$ = null">Add</button>
+        <br />
+        <section>
+            <h3>Invoice #{{Invoice.InvoiceNo}}</h3>
+            Name: <input type="text" value="{{Invoice.Name$}}" />
+            Total: {{Invoice.Total}}
+            <table>
+                <thead>
+                    <tr><th>Description</th><th>Quantity</th><th>Price</th><th>Total</th></tr>
+                </thead>
+                <tbody>
+                <template repeat="{{ item in Invoice.Items }}">
+                    <tr>
+                        <td><input type="text" value="{{item.Description$}}" /> </td>
+                        <td><input type="number" value="{{item.Quantity$}}" /> </td>
+                        <td><input type="number" value="{{item.Price$}}" /> </td>
+                        <td>{{item.Total}}</td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+            <div>
+                <button onclick="getModel(this).Invoice.Save$ = null">Save</button>
+                <button onclick="getModel(this).Invoice.Cancel$ = null">Cancel</button>
+                <button onclick="getModel(this).Invoice.Delete$ = null">Delete</button>
+            </div>
+        </section>
+    </template>
+    <puppet-js ref="root"></puppet-js>
+</body>
