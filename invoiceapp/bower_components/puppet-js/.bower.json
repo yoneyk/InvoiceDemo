@@ -1,0 +1,31 @@
+{
+  "name": "puppet-js",
+  "description": "Custom Element to bind server-side view models with HTML nodes (HTML Templates/Web Components/AngularJs Apps) using PuppetJs communication (JSON-Patch)",
+  "license": "MIT",
+  "main": "src/puppet-js.html",
+  "keywords": [
+    "web-components"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "preview.png",
+    "test",
+    "examples"
+  ],
+  "dependencies": {
+    "platform": "Polymer/platform#~0.3.2",
+    "PuppetJs": "~0.1.11"
+  },
+  "homepage": "https://github.com/PuppetJs/puppet-js",
+  "_release": "b8df80e88e",
+  "_resolution": {
+    "type": "branch",
+    "branch": "gh-pages",
+    "commit": "b8df80e88ebeb8043533e6c0eb20cf929f7e0181"
+  },
+  "_source": "git://github.com/PuppetJs/puppet-js.git",
+  "_target": "gh-pages",
+  "_originalSource": "puppet-js"
+}
