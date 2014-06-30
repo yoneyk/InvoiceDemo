@@ -21,6 +21,8 @@
     "imported-template": "~0.0.2",
     "model-operations": "Polyjuice/model-operations#~0.0.1",
     "puppet-js": "gh-pages",
-    "juicy-redirect": "Juicy/juicy-redirect#gh-pages"
+    "juicy-redirect": "Juicy/juicy-redirect#gh-pages",
+    "twbs-buttons": "*",
+    "gaplyk": "gaplyk/input-currency"
   }
 }

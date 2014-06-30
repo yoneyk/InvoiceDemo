@@ -1,0 +1,19 @@
+{
+    "name": "gaplyk",
+    "version": "0.0.0",
+    "description": "numeric input formatted to regional currency settings using Intl API",
+    "license": "MIT",
+    "main": "dist/input-currency.html",
+    "keywords": [
+        "polymer",
+        "web-components"
+    ],
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components"
+    ],
+    "dependencies": {
+        "polymer": "Polymer/polymer#master"
+    }
+}

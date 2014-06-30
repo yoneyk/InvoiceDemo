@@ -1,0 +1,75 @@
+<!-- Import Polymer -->
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<!-- Define your custom element -->
+<polymer-element name="input-currency" constructor="InputCurrency" attributes="currency locales readonly value placeholder">
+ 	<template>
+        <style>
+            :host {
+                display: inline-block;
+                vertical-align: top;
+            }
+            input {
+                text-align: right;
+            }
+            input.readonly {
+                background-color: #aaaaaa;
+            }
+
+            input.readonly.changed {
+                background-color: #f8b9b7;
+            }
+        </style>
+
+        <label for="input"><content></content></label>
+        <input id="input" type="text" value="{{formattedValue}}" on-focus="{{onFocus}}" on-blur="{{onBlur}}" placeholder="{{placeholder}}">
+    </template>
+
+    <script>
+        Polymer('input-currency', {
+            resetStyleInheritance: true,
+            ready:function() {
+            	this.currency = this.currency || "USD";
+            	this.locales = this.locales || "en-US";
+                this.formatter = new Intl.NumberFormat(this.locales, {style: "currency", currency: this.currency, minimumFractionDigits: 2, maximumFractionDigits:2});
+            },
+
+            readonlyChanged: function(){
+                if(this.readonly) {
+                    this.$.input.classList.add('readonly');
+                    this.originalValue = this.value;
+                }else{
+                    this.$.input.classList.remove('readonly');
+                    this.$.input.classList.remove('changed');
+                    this.originalValue = null;
+                }
+            },
+
+            valueChanged: function(){
+                this.formattedValue =  this.formatter.format(this.value);
+
+                if(this.readonly){
+                    if(this.value !== this.originalValue) {
+                        this.$.input.classList.add('changed');
+                    }else{
+                        this.$.input.classList.remove('changed');
+                    }
+                }
+            },
+
+            onFocus: function(e){
+                this.$.input.type = "number";
+                this.formattedValue = this.value;
+            },
+
+            onBlur: function(e){
+                this.$.input.type = "text";
+                this.value = this.formattedValue;
+                this.formattedValue =  this.formatter.format(this.value);
+
+                this.fire('value-changed', {})
+            }
+        });
+    </script>
+
+</polymer-element>
