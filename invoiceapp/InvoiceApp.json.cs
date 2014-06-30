@@ -53,6 +53,12 @@ partial class InvoiceApp : Json {
             ((InvoiceApp)this.Parent).Invoices = SQL("SELECT I FROM Invoice I"); //refresh invoices list
 
         }
+        void Handle(Input.AddRow action)
+        {
+            new InvoiceRow() { 
+                Invoice = (Invoice)this.Data 
+            };
+        }
         void Handle(Input.Cancel action) {
             this.Transaction.Rollback();
         }
