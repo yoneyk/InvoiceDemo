@@ -13,8 +13,7 @@ partial class InvoiceApp : Json {
                 Html = "/invoiceapp.html"
             };
             invoiceApp.Session = new Session();
-            invoiceApp.Transaction = new Transaction();
-            invoiceApp.Transaction.Add(() => {
+            invoiceApp.Transaction = new Transaction(() => {
                 invoiceApp.Invoices = SQL("SELECT I FROM Invoice I");
             });
             return invoiceApp;
@@ -48,7 +47,10 @@ partial class InvoiceApp : Json {
         void Handle(Input.Save action) {
 
             var invoice = (Invoice)this.Data;
-            invoice.InvoiceNo = (int)Db.SQL<Int64>("SELECT max(o.InvoiceNo) FROM Invoice o").First + 1;
+
+            if (invoice.InvoiceNo == 0) { // A new invoice. 
+                invoice.InvoiceNo = (int)Db.SQL<Int64>("SELECT max(o.InvoiceNo) FROM Invoice o").First + 1;
+            }
 
             this.Transaction.Commit();
 
