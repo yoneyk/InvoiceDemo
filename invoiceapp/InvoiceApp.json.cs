@@ -48,6 +48,9 @@ partial class InvoiceApp : Json {
 
             var invoice = (Invoice)this.Data;
 
+            if (invoice == null) // Nothing to save.
+                return;
+
             if (invoice.InvoiceNo == 0) { // A new invoice. 
                 invoice.InvoiceNo = (int)Db.SQL<Int64>("SELECT max(o.InvoiceNo) FROM Invoice o").First + 1;
             }
@@ -68,12 +71,17 @@ partial class InvoiceApp : Json {
             this.Transaction.Rollback();
         }
         void Handle(Input.Delete action) {
-            foreach(var row in Items) {
-                row.Data.Delete();
+            var invoice = (Invoice)this.Data;
+
+            if (invoice == null) // Nothing to delete.
+                return;
+
+            foreach(var row in invoice.Items) {
+                row.Delete();
             }
-            this.Data.Delete();
-            ((InvoiceApp)this.Parent).Invoices = SQL("SELECT I FROM Invoice I"); //refresh invoices list
+            invoice.Delete();
             this.Transaction.Commit();
+            ((InvoiceApp)this.Parent).Invoices = SQL("SELECT I FROM Invoice I"); //refresh invoices list
             this.Data = new Invoice(); //display fresh invoice after one was deleted
             ((InvoiceApp)this.Parent).RedirectUrl = "/"; //redirect to the home URL
         }
