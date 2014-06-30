@@ -4,8 +4,7 @@
 	Invoices:[{
 		InvoiceNo:0,
 		Name:"",
-		Total:0.0,
-		Show$:null
+		Total:0.0
 	}],
 
 	Add$: null,

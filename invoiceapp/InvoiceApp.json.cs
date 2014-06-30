@@ -20,6 +20,13 @@ partial class InvoiceApp : Json {
             return invoiceApp;
         });
 
+        Starcounter.Handle.GET("/invoice/{?}", (int InvoiceNo, Request r) =>
+        {
+            InvoiceApp invoiceApp = InvoiceApp.GET("/");
+            invoiceApp.Invoice.Data = Db.SQL("SELECT I FROM Invoice I WHERE InvoiceNo = ?", InvoiceNo).First;
+            return invoiceApp.Invoice;
+        });
+
         #region Sample Data
         Starcounter.Handle.GET("/init", (Request r) => {
             SampleData();
@@ -34,11 +41,6 @@ partial class InvoiceApp : Json {
 
     [InvoiceApp_json.Invoices]
     partial class InvoiceListElementJson : Json {
-        void Handle(Input.Show show) {
-            Invoice invoice = this.Data as Invoice;
-            var inv = ((InvoiceApp)this.Parent.Parent).Invoice;
-            inv.Data = invoice;
-        }
     }
 
     [InvoiceApp_json.Invoice]

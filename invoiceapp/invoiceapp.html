@@ -25,7 +25,7 @@
                           <td>{{invoice.InvoiceNo}}</td>
                           <td>{{invoice.Name}}</td>
                           <td>{{invoice.Total}}</td>
-                          <td><button onclick="getModel(this).invoice.Show$ = null">Show</button></td>
+                          <td><a href="/invoice/{{invoice.InvoiceNo}}">Show</a></td>
                       </tr>
                       </template>
               </tbody>
