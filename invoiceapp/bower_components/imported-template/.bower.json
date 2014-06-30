@@ -39,6 +39,5 @@
   },
   "_source": "git://github.com/PuppetJs/imported-template.git",
   "_target": "~0.0.2",
-  "_originalSource": "imported-template",
-  "_direct": true
+  "_originalSource": "imported-template"
 }
