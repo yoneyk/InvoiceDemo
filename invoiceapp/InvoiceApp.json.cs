@@ -115,14 +115,7 @@ partial class InvoiceApp : Json {
 public class Invoice {
     public int InvoiceNo;
     public string Name;
-    public decimal Total { get { 
-        var sum = Db.SQL<decimal?>("SELECT sum(o.Total) FROM InvoiceRow o WHERE o.Invoice=?", this).First;
-        if (sum == null)
-        {
-            return 0;
-        }
-        return (decimal)sum; 
-    } }
+    public decimal Total { get { return Db.SQL<decimal>("SELECT sum(o.Total) FROM InvoiceRow o WHERE o.Invoice=?", this).First; } }
     public IEnumerable Items { get { return Db.SQL<InvoiceRow>("SELECT o FROM InvoiceRow o WHERE o.Invoice=?", this); } }
 }
 
