@@ -53,6 +53,7 @@ partial class InvoiceApp : Json {
             this.Transaction.Commit();
 
             ((InvoiceApp)this.Parent).Invoices = SQL("SELECT I FROM Invoice I"); //refresh invoices list
+            ((InvoiceApp)this.Parent).RedirectUrl = "/invoice/" + invoice.InvoiceNo; //redirect to the new URL
 
         }
         void Handle(Input.AddRow action)
@@ -72,6 +73,7 @@ partial class InvoiceApp : Json {
             ((InvoiceApp)this.Parent).Invoices = SQL("SELECT I FROM Invoice I"); //refresh invoices list
             this.Transaction.Commit();
             this.Data = new Invoice(); //display fresh invoice after one was deleted
+            ((InvoiceApp)this.Parent).RedirectUrl = "/"; //redirect to the home URL
         }
     }
 

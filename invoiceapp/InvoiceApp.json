@@ -8,6 +8,7 @@
 	}],
 
 	Add$: null,
+	RedirectUrl$: "",
 
 	Invoice: {
 		InvoiceNo:0,
