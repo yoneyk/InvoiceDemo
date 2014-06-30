@@ -62,8 +62,14 @@ partial class InvoiceApp : Json {
         void Handle(Input.Cancel action) {
             this.Transaction.Rollback();
         }
-        void Handler(Input.Delete action) {
+        void Handle(Input.Delete action) {
+            foreach(var row in Items) {
+                row.Data.Delete();
+            }
             this.Data.Delete();
+            ((InvoiceApp)this.Parent).Invoices = SQL("SELECT I FROM Invoice I"); //refresh invoices list
+            this.Transaction.Commit();
+            this.Data = new Invoice(); //display fresh invoice after one was deleted
         }
     }
 
