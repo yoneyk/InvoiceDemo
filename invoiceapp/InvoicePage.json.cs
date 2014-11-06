@@ -26,7 +26,11 @@ partial class InvoicePage : Json {
         };
     }
     void Handle(Input.Cancel action) {
+        bool isUnsavedInvoice = (InvoiceNo == 0);
         this.Transaction.Rollback();
+        if (isUnsavedInvoice) {
+            Data = new Invoice();
+        }
     }
     void Handle(Input.Delete action) {
         var invoice = (Invoice)this.Data;
