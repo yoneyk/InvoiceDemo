@@ -33,7 +33,15 @@
           <button onclick="getModel(this).Add$ = null">Add invoice</button>
         </section>
         <section class="invoice">
-            <h3>Invoice #{{Invoice.InvoiceNo}}</h3>
+
+            <template if="{{Invoice.InvoiceNo}}">
+              <h3>Invoice #{{Invoice.InvoiceNo}}</h3>
+            </template>
+            <template if="{{!Invoice.InvoiceNo}}">
+              <h3>Add new invoice</h3>
+            </template>
+
+
             Name: <input type="text" value="{{Invoice.Name$}}" />
             Total: {{Invoice.Total}}
             <table>

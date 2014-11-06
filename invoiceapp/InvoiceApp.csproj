@@ -68,6 +68,9 @@
     <Compile Include="InvoiceApp.json.cs">
       <DependentUpon>InvoiceApp.json</DependentUpon>
     </Compile>
+    <Compile Include="InvoicePage.json.cs">
+      <DependentUpon>InvoicePage.json</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +81,11 @@
   <ItemGroup>
     <Content Include="sys\starcounter.html" />
     <Content Include="invoiceapp.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="InvoicePage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(StarcounterBin)\Starcounter.MsBuild.targets" />

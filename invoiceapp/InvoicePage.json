@@ -1,0 +1,12 @@
+{
+		InvoiceNo:0,
+		Name$:"",
+		Total:0.0,
+		Items: [
+		{ Description$:"", Quantity$:0, Price$:0.0, Total:0.0 }
+		],
+		AddRow$:null,
+		Save$:null,
+		Cancel$:null,
+		Delete$:null
+}

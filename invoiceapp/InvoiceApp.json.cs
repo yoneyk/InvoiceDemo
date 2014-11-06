@@ -13,8 +13,10 @@ partial class InvoiceApp : Json {
                 Html = "/invoiceapp.html"
             };
             invoiceApp.Session = new Session();
-            invoiceApp.Transaction = new Transaction(() => {
-                invoiceApp.Invoices = SQL("SELECT I FROM Invoice I");
+            invoiceApp.Invoices = SQL("SELECT I FROM Invoice I");
+            invoiceApp.Invoice = new InvoicePage();
+            invoiceApp.Invoice.Transaction = new Transaction(() => {
+                invoiceApp.Invoice.Data = new Invoice() { InvoiceNo = 0 };
             });
             return invoiceApp;
         });
@@ -22,7 +24,10 @@ partial class InvoiceApp : Json {
         Starcounter.Handle.GET("/invoice/{?}", (int InvoiceNo, Request r) =>
         {
             InvoiceApp invoiceApp = InvoiceApp.GET("/");
-            invoiceApp.Invoice.Data = Db.SQL("SELECT I FROM Invoice I WHERE InvoiceNo = ?", InvoiceNo).First;
+            invoiceApp.Invoice = new InvoicePage();
+            invoiceApp.Invoice.Transaction = new Transaction(() => {
+                invoiceApp.Invoice.Data = Db.SQL("SELECT I FROM Invoice I WHERE InvoiceNo = ?", InvoiceNo).First;
+            });
             return invoiceApp.Invoice;
         });
 
@@ -35,56 +40,14 @@ partial class InvoiceApp : Json {
     }
 
     void Handle(Input.Add action) {
-        this.Invoice.Data = new Invoice() { InvoiceNo = 0 };
+        Invoice = new InvoicePage();
+        Invoice.Transaction = new Transaction(() => {
+            Invoice.Data = new Invoice() { InvoiceNo = 0 };
+        });
     }
 
     [InvoiceApp_json.Invoices]
     partial class InvoiceListElementJson : Json {
-    }
-
-    [InvoiceApp_json.Invoice]
-    partial class InvoiceJson : Json {
-        void Handle(Input.Save action) {
-
-            var invoice = (Invoice)this.Data;
-
-            if (invoice == null) // Nothing to save.
-                return;
-
-            if (invoice.InvoiceNo == 0) { // A new invoice. 
-                invoice.InvoiceNo = (int)Db.SQL<Int64>("SELECT max(o.InvoiceNo) FROM Invoice o").First + 1;
-            }
-
-            this.Transaction.Commit();
-
-            ((InvoiceApp)this.Parent).Invoices = SQL("SELECT I FROM Invoice I"); //refresh invoices list
-            ((InvoiceApp)this.Parent).RedirectUrl = "/invoice/" + invoice.InvoiceNo; //redirect to the new URL
-
-        }
-        void Handle(Input.AddRow action)
-        {
-            new InvoiceRow() { 
-                Invoice = (Invoice)this.Data 
-            };
-        }
-        void Handle(Input.Cancel action) {
-            this.Transaction.Rollback();
-        }
-        void Handle(Input.Delete action) {
-            var invoice = (Invoice)this.Data;
-
-            if (invoice == null) // Nothing to delete.
-                return;
-
-            foreach(var row in invoice.Items) {
-                row.Delete();
-            }
-            invoice.Delete();
-            this.Transaction.Commit();
-            ((InvoiceApp)this.Parent).Invoices = SQL("SELECT I FROM Invoice I"); //refresh invoices list
-            this.Data = new Invoice(); //display fresh invoice after one was deleted
-            ((InvoiceApp)this.Parent).RedirectUrl = "/"; //redirect to the home URL
-        }
     }
 
     // Browsers will ask for "text/html" and we will give it to them
