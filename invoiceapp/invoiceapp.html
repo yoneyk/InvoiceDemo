@@ -4,88 +4,258 @@
     <script src="/bower_components/platform/platform.js"></script>
     <link rel="import" href="/sys/starcounter.html" />
     <style>
+
         body {
-            font-family: Calibri, Helvetica, Arial, sans-serif;
-            margin: 20px 40px;
+            background: #ffffff;
+            font-family: sans-serif;
+            font-weight: normal;
             display: flex;
+            margin: 0px;
+            padding: 10px;
         }
 
         section {
             flex: 0 1 auto;
+            border: 1px solid rgb(226, 226, 226);
+            background: #FCFCFC;
+            border-radius: 5px;
+            padding: 10px 20px 20px 20px;
+            margin: 10px;
         }
 
-            section.invoice {
-                flex: 1 1 auto;
-                margin-left: 60px;
-            }
+        section.invoice {
+            flex: 1 1 auto;
+        }
 
-        table {
+        input, select, textarea, button {
+            font-family: inherit;
+        }
+
+        input {
+            font-size: 100%;
+        }
+
+        /* Header */
+
+        h3 {
+            margin: 0px 0px 10px 0px;
+            padding: 0px;
+            font-size: 24px;
+            line-height: 40px;
+            color: black;
+        }
+
+        .invoiceSubtitle {
+            margin: 10px 0px 20px 0px;
+        }
+
+        .invoiceSubtitle label {
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .invoiceSubtitle input {
+            margin-top: 3px;
+            padding: 6px 10px 6px 10px;
+            border: 1px solid #cccccc;
+        }
+
+        table.invoiceTable {
             border-collapse: collapse;
-            margin: 14px 0;
         }
 
-        table, td, th {
-            border: 1px solid black;
-            padding: 2px 4px;
+        table.invoiceTable th {
+            border-width: 1px 1px 1px 1px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            border-style: solid;
+            border-color: #cccccc;
+            color: #000000;
+            background-color: #eeeeee;
+            font-weight: bold; 
+            min-width: 100px;
         }
+
+        table.invoiceTable th:first-child {
+            text-align: left;
+            padding-left: 10px;
+        }
+
+        table.invoiceTable th:last-child {
+            text-align: right;
+            padding-right: 10px;
+        }
+
+        table.invoiceTable td {
+            border-width: 1px;
+            padding: 0px;
+            margin: 0px;
+            border-style: solid;
+            border-color: #cccccc;
+            background-color: #ffffff;
+        }
+
+        table.invoiceTable td input {
+            margin: 0px;
+            padding: 6px 10px 6px 10px;
+            border-width: 0px;
+        }
+
+        table.invoiceTable td input[type=number] {
+            text-align: right;
+            padding-right: 0px;
+        }
+
+        table.invoiceTable td.readonlycell {
+            padding: 6px 10px 6px 10px;
+        }
+
+        table.invoiceTable td.alignright {
+            text-align: right;
+        }
+
+        table.invoiceTable tfoot td:first-child {
+            border-left-width: 0;
+            border-bottom-width: 0;
+        }
+    
+        button {
+            margin: 0px 0px 6px 4px;
+            padding: 8px 15px 8px 15px;
+            background: #4479BA;
+            color: #FFF;
+            border: 0px;
+        }
+
+        table.invoiceTable .total {
+            background: #eeeeee;
+            text-align:right;
+            color:black;
+            padding: 6px 10px 6px 10px;
+            font-weight: bold;
+        }
+
+        button:hover, button:focus  {
+	        -webkit-animation: pulsate 1.2s linear infinite;
+	        animation: pulsate 1.2s linear infinite;
+        }
+
+        table.invoiceTable caption {
+            caption-side: bottom;
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        table.invoiceTable a:link {
+            text-align:center;
+	        color: #3d85b4;
+	        text-decoration:underline;
+            padding: 6px 10px 6px 10px;
+        }
+        table.invoiceTable a:visited {
+	        color: #3d85b4;
+	        text-decoration:underline
+        }
+        table.invoiceTable a:active,
+        table.invoiceTable a:hover {
+	        color: #59a0c3;
+	        text-decoration:underline
+        }
+
     </style>
 </head>
+
 <body>
     <template id="root" bind>
+
         <section>
-          <h3>Invoices</h3>
-          <table>
-              <thead>
-                      <tr><th>#</th><th>Name</th><th>Total</th><th></th></tr>
-              </thead>
-              <tbody>
-                  <template repeat="{{ invoice in Invoices }}">
-                      <tr>
-                          <td>{{invoice.InvoiceNo}}</td>
-                          <td>{{invoice.Name}}</td>
-                          <td>{{invoice.Total}}</td>
-                          <td><a href="/invoice/{{invoice.InvoiceNo}}">Show</a></td>
-                      </tr>
-                      </template>
-              </tbody>
-          </table>
-          <button onclick="getModel(this).Add$ = null">Add invoice</button>
+            <h3>Invoices</h3>
+
+            <table class="invoiceTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Total</th>
+                        <!--<th></th>-->
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <template repeat="{{ invoice in Invoices }}">
+                        <tr>
+                            <td><a href="/invoice/{{invoice.InvoiceNo}}">{{invoice.InvoiceNo}}</a></td>
+                            <td class="readonlycell">{{invoice.Name}}</td>
+                            <td class="readonlycell alignright">{{invoice.Total}}</td>
+                            <!--<td><a href="/invoice/{{invoice.InvoiceNo}}">Show</a></td>-->
+                        </tr>
+                    </template>
+                </tbody>
+
+                <caption>
+                    <button onclick="getModel(this).Add$ = null">Add invoice</button>
+                </caption>
+
+            </table>
         </section>
+
         <section class="invoice">
 
             <template if="{{Invoice.InvoiceNo}}">
-              <h3>Invoice #{{Invoice.InvoiceNo}}</h3>
+                <h3>Invoice #{{Invoice.InvoiceNo}}</h3>
             </template>
+
             <template if="{{!Invoice.InvoiceNo}}">
-              <h3>Add new invoice</h3>
+                <h3>Add new invoice</h3>
             </template>
 
-
-            Name: <input type="text" value="{{Invoice.Name$}}" />
-            Total: {{Invoice.Total}}
-            <table>
-                <thead>
-                    <tr><th>Description</th><th>Quantity</th><th>Price</th><th>Total</th></tr>
-                </thead>
-                <tbody>
-                <template repeat="{{ item in Invoice.Items }}">
-                    <tr>
-                        <td><input type="text" value="{{item.Description$}}" /> </td>
-                        <td><input type="number" value="{{item.Quantity$}}" /> </td>
-                        <td><input type="number" value="{{item.Price$}}" /> </td>
-                        <td>{{item.Total}}</td>
-                    </tr>
-                </template>
-            </tbody>
-        </table>
-            <div>
-                <button onclick="getModel(this).Invoice.AddRow$ = null">Add row</button>
-                <button onclick="getModel(this).Invoice.Save$ = null">Save changes</button>
-                <button onclick="getModel(this).Invoice.Cancel$ = null">Cancel changes</button>
-                <button onclick="getModel(this).Invoice.Delete$ = null">Delete invoice</button>
+            <div class="invoiceSubtitle">
+                <label>Name</label>
+                <input type="text" value="{{Invoice.Name$}}" />
             </div>
+
+            <table class="invoiceTable" style="width:700px">
+
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <template repeat="{{ item in Invoice.Items }}">
+                        <tr>
+                            <td ><input type="text" value="{{item.Description$}}"/> </td>
+                            <td><input type="number" value="{{item.Quantity$}}"/> </td>
+                            <td><input type="number" value="{{item.Price$}}" /> </td>
+                            <td class="readonlycell alignright">{{item.Total}}</td>
+                        </tr>
+                    </template>
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <td colspan="3"></td>
+                        <td class="total">{{Invoice.Total}}</td>
+                    </tr>
+                </tfoot>
+
+                <caption>
+                    <button onclick="getModel(this).Invoice.AddRow$ = null">Add row</button>
+                    <button onclick="getModel(this).Invoice.Save$ = null">Save changes</button>
+                    <button onclick="getModel(this).Invoice.Cancel$ = null">Cancel changes</button>
+                    <button onclick="getModel(this).Invoice.Delete$ = null">Delete invoice</button>
+                </caption>
+
+            </table>
+           
         </section>
+
         <link is="juicy-redirect" history url="{{RedirectUrl$}}">
     </template>
+
     <puppet-js ref="root"></puppet-js>
 </body>
