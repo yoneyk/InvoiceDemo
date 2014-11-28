@@ -228,9 +228,9 @@
                 <tbody>
                     <template repeat="{{ item in Invoice.Items }}">
                         <tr>
-                            <td ><input type="text" value="{{item.Description$}}"/> </td>
-                            <td><input type="number" value="{{item.Quantity$}}"/> </td>
-                            <td><input type="number" value="{{item.Price$}}" /> </td>
+                            <td ><input update-on="input" type="text" value="{{item.Description$}}"/> </td>
+                            <td><input update-on="input" type="number" value="{{item.Quantity$}}"/> </td>
+                            <td><input update-on="input" type="number" value="{{item.Price$}}" /> </td>
                             <td class="readonlycell alignright">{{item.Total}}</td>
                         </tr>
                     </template>
