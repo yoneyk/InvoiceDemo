@@ -79,6 +79,7 @@
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="style.css" />
     <Content Include="sys\starcounter.html" />
     <Content Include="invoiceapp.html" />
   </ItemGroup>
