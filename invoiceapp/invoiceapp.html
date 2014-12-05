@@ -1,102 +1,103 @@
 <!DOCTYPE html>
+<html>
 <head>
-    <title>Invoice app</title>
-    <script src="/bower_components/platform/platform.js"></script>
-    <link rel="import" href="/sys/starcounter.html">
-    <link rel="stylesheet" href="/style.css">
+  <title>Invoices</title>
+  <script src="/sys/vendor/webcomponentsjs/webcomponents.js"></script>
+  <link rel="import" href="/sys/starcounter.html">
+  <link rel="import" href="/sys/layout.html">
+  <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
-    <template id="root" bind>
+<template id="root" bind>
 
-        <section>
-            <h3>Invoices</h3>
+  <section>
+    <h3>Invoices</h3>
 
-            <table class="invoiceTable">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Total</th>
-                        <!--<th></th>-->
-                    </tr>
-                </thead>
+    <table class="invoiceTable">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Total</th>
+      </tr>
+      </thead>
 
-                <tbody>
-                    <template repeat="{{ invoice in Invoices }}">
-                        <tr>
-                            <td><a href="/invoice/{{invoice.InvoiceNo}}">{{invoice.InvoiceNo}}</a></td>
-                            <td class="readonlycell">{{invoice.Name}}</td>
-                            <td class="readonlycell alignright">{{invoice.Total}}</td>
-                            <!--<td><a href="/invoice/{{invoice.InvoiceNo}}">Show</a></td>-->
-                        </tr>
-                    </template>
-                </tbody>
+      <tbody>
+      <template repeat="{{ invoice in Invoices }}">
+        <tr>
+          <td><a href="/invoice/{{invoice.InvoiceNo}}">{{invoice.InvoiceNo}}</a></td>
+          <td class="readonlycell">{{invoice.Name}}</td>
+          <td class="readonlycell alignright">{{invoice.Total}}</td>
+        </tr>
+      </template>
+      </tbody>
 
-                <caption>
-                    <button onclick="getModel(this).Add$ = null">Add invoice</button>
-                </caption>
+      <caption>
+        <button onclick="getModel(this).Add$++">Add invoice</button>
+      </caption>
 
-            </table>
-        </section>
+    </table>
+  </section>
 
-        <section class="invoice">
+  <section class="invoice">
 
-            <template if="{{Invoice.InvoiceNo}}">
-                <h3>Invoice #{{Invoice.InvoiceNo}}</h3>
-            </template>
-
-            <template if="{{!Invoice.InvoiceNo}}">
-                <h3>Add new invoice</h3>
-            </template>
-
-            <div class="invoiceSubtitle">
-                <label>Name</label>
-                <input type="text" value="{{Invoice.Name$}}" />
-            </div>
-
-            <table class="invoiceTable" style="width:700px">
-
-                <thead>
-                    <tr>
-                        <th>Description</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <template repeat="{{ item in Invoice.Items }}">
-                        <tr>
-                            <td ><input type="text" value="{{item.Description$}}"/> </td>
-                            <td><input update-on="input" type="number" value="{{item.Quantity$}}"/> </td>
-                            <td><input update-on="input" type="number" value="{{item.Price$}}" /> </td>
-                            <td class="readonlycell alignright">{{item.Total}}</td>
-                        </tr>
-                    </template>
-                </tbody>
-
-                <tfoot>
-                    <tr>
-                        <td colspan="3"></td>
-                        <td class="total">{{Invoice.Total}}</td>
-                    </tr>
-                </tfoot>
-
-                <caption>
-                    <button onclick="getModel(this).Invoice.AddRow$ = null">Add row</button>
-                    <button onclick="getModel(this).Invoice.Save$ = null">Save changes</button>
-                    <button onclick="getModel(this).Invoice.Cancel$ = null">Cancel changes</button>
-                    <button onclick="getModel(this).Invoice.Delete$ = null">Delete invoice</button>
-                </caption>
-
-            </table>
-           
-        </section>
-
-        <link is="juicy-redirect" history url="{{RedirectUrl$}}">
+    <template if="{{Invoice.InvoiceNo}}">
+      <h3>Invoice #{{Invoice.InvoiceNo}}</h3>
     </template>
 
-    <puppet-js ref="root"></puppet-js>
+    <template if="{{!Invoice.InvoiceNo}}">
+      <h3>Add new invoice</h3>
+    </template>
+
+    <div class="invoiceSubtitle">
+      <label>Name</label>
+      <input type="text" value="{{Invoice.Name$}}"/>
+    </div>
+
+    <table class="invoiceTable" style="width:700px">
+
+      <thead>
+      <tr>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <template repeat="{{ item in Invoice.Items }}">
+        <tr>
+          <td><input type="text" value="{{item.Description$}}"/></td>
+          <td><input update-on="input" type="number" value="{{item.Quantity$}}"/></td>
+          <td><input update-on="input" type="number" value="{{item.Price$}}"/></td>
+          <td class="readonlycell alignright">{{item.Total}}</td>
+        </tr>
+      </template>
+      </tbody>
+
+      <tfoot>
+      <tr>
+        <td colspan="3"></td>
+        <td class="total">{{Invoice.Total}}</td>
+      </tr>
+      </tfoot>
+
+      <caption>
+        <button onclick="getModel(this).Invoice.AddRow$++">Add row</button>
+        <button onclick="getModel(this).Invoice.Save$++">Save changes</button>
+        <button onclick="getModel(this).Invoice.Cancel$++">Cancel changes</button>
+        <button onclick="getModel(this).Invoice.Delete$++">Delete invoice</button>
+      </caption>
+
+    </table>
+
+  </section>
+
+  <link is="juicy-redirect" history url="{{RedirectUrl$}}">
+</template>
+
+<puppet-js ref="root"></puppet-js>
 </body>
+</html>

@@ -5,8 +5,8 @@
 		Items: [
 		{ Description$:"", Quantity$:0, Price$:0.0, Total:0.0 }
 		],
-		AddRow$:null,
-		Save$:null,
-		Cancel$:null,
-		Delete$:null
+		AddRow$:0,
+		Save$:0,
+		Cancel$:0,
+		Delete$:0
 }

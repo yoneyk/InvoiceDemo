@@ -7,7 +7,7 @@
 		Total:0.0
 	}],
 
-	Add$: null,
+	Add$: 0,
 	RedirectUrl$: "",
 
 	Invoice: {}
