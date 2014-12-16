@@ -1,14 +1,11 @@
 {
-	Html:"",
-
-	Invoices:[{
-		InvoiceNo:0,
-		Name:"",
-		Total:0.0
-	}],
-
-	Add$: 0,
-	RedirectUrl$: "",
-
-	Invoice: {}
+  "Html": "",
+  "Invoices": [{
+    "InvoiceNo": 0,
+    "Name": "",
+    "Total": 0.0
+  }],
+  "Add$": 0,
+  "Invoice": {},
+  "RedirectUrl$": ""
 }

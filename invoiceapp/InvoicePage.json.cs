@@ -1,50 +1,41 @@
 using Starcounter;
-using System;
 
-[InvoicePage_json]
-partial class InvoicePage : Json {
-    void Handle(Input.Save action) {
-
-        var invoice = (Invoice)this.Data;
-
-        if (invoice == null) // Nothing to save.
-            return;
-
-        if (invoice.InvoiceNo == 0) { // A new invoice. 
-            invoice.InvoiceNo = (int)Db.SQL<Int64>("SELECT max(o.InvoiceNo) FROM Invoice o").First + 1;
-        }
-
-        this.Transaction.Commit();
-
-        ((InvoiceApp)this.Parent).Invoices = SQL("SELECT I FROM Invoice I"); //refresh invoices list
-        ((InvoiceApp)this.Parent).RedirectUrl = "/invoice/" + invoice.InvoiceNo; //redirect to the new URL
-
-    }
+partial class InvoicePage : Json, IBound<Invoice> {
     void Handle(Input.AddRow action) {
         new InvoiceRow() {
-            Invoice = (Invoice)this.Data
+            Invoice = Data
         };
     }
+
+    void Handle(Input.Save action) {
+        if (InvoiceNo == 0) { // A new invoice. 
+            InvoiceNo = (int)Db.SQL<long>(
+              "SELECT max(i.InvoiceNo) FROM Invoice i").First + 1;
+        }
+        Transaction.Commit();
+        ((InvoiceApp)this.Parent).Invoices = SQL(
+          "SELECT i FROM Invoice i"); //refresh invoices list
+    }
+
     void Handle(Input.Cancel action) {
         bool isUnsavedInvoice = (InvoiceNo == 0);
-        this.Transaction.Rollback();
+        Transaction.Rollback();
         if (isUnsavedInvoice) {
             Data = new Invoice();
         }
     }
-    void Handle(Input.Delete action) {
-        var invoice = (Invoice)this.Data;
 
-        if (invoice == null) // Nothing to delete.
+    void Handle(Input.Delete action) {
+        if (Data == null) // Nothing to delete.
             return;
 
-        foreach (var row in invoice.Items) {
+        foreach (var row in Data.Items) {
             row.Delete();
         }
-        invoice.Delete();
-        this.Transaction.Commit();
-        ((InvoiceApp)this.Parent).Invoices = SQL("SELECT I FROM Invoice I"); //refresh invoices list
-        this.Data = new Invoice(); //display fresh invoice after one was deleted
-        ((InvoiceApp)this.Parent).RedirectUrl = "/"; //redirect to the home URL
+        Data.Delete();
+        Transaction.Commit();
+        ((InvoiceApp)this.Parent).Invoices = Db.SQL(
+          "SELECT i FROM Invoice i"); //refresh invoices list
+        Data = new Invoice(); //display fresh invoice after one was deleted
     }
 }

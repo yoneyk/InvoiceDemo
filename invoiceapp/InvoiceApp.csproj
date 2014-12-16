@@ -65,12 +65,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database.cs" />
     <Compile Include="InvoiceApp.json.cs">
       <DependentUpon>InvoiceApp.json</DependentUpon>
     </Compile>
     <Compile Include="InvoicePage.json.cs">
       <DependentUpon>InvoicePage.json</DependentUpon>
     </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -80,7 +82,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="style.css" />
-    <Content Include="sys\starcounter.html" />
     <Content Include="invoiceapp.html" />
   </ItemGroup>
   <ItemGroup>

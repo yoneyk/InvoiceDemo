@@ -91,6 +91,7 @@ table.invoiceTable td.alignright {
 table.invoiceTable tfoot td:first-child {
     border-left-width: 0;
     border-bottom-width: 0;
+    background-color: transparent;
 }
 
 button {
