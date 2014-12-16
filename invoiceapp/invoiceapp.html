@@ -5,6 +5,7 @@
   <script src="/sys/webcomponentsjs/webcomponents.js"></script><!-- load Web Components polyfill for all browsers -->
   <link rel="import" href="/sys/starcounter.html"><!-- import Web Components needed for client-server sync -->
   <link rel="stylesheet" href="/style.css"><!-- load stylesheet -->
+  <link rel="import" href="/sys/puppet-redirect/src/puppet-redirect.html">
 </head>
 
 <body>
@@ -93,6 +94,7 @@
     </table>
 
   </section><!-- end right pane of the UI -->
+  <link is="puppet-redirect" history url="{{RedirectUrl$}}">
 </template>
 
 <puppet-js ref="root" useWebSocket></puppet-js><!-- plug in client-server sync -->

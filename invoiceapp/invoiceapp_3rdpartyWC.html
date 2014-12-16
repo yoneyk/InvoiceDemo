@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/style.css"><!-- load stylesheet -->
     <link rel="import" href="/sys/twbs-buttons/src/twbs-button.html">
     <link rel="import" href="/sys/gaplyk/src/input-currency.html">
+    <link rel="import" href="/sys/puppet-redirect/src/puppet-redirect.html">
     <style>
       body { font-family: Calibri, Helvetica, Arial, sans-serif; margin: 20px 40px; display: flex; }
       section {flex: 0 1 auto}
@@ -61,7 +62,7 @@
                 <twbs-button style="danger" onclick="getModel(this).Invoice.Delete$++">Delete</twbs-button>
             </div>
         </section>
-        <link is="juicy-redirect" url="{{RedirectUrl$}}">
+        <link is="puppet-redirect" history url="{{RedirectUrl$}}">
     </template>
-    <puppet-js ref="root"></puppet-js>
+    <puppet-js ref="root" useWebSocket></puppet-js><!-- plug in client-server sync -->
 </body>

@@ -15,6 +15,7 @@ partial class InvoicePage : Json, IBound<Invoice> {
         Transaction.Commit();
         ((InvoiceApp)this.Parent).Invoices = SQL(
           "SELECT i FROM Invoice i"); //refresh invoices list
+        ((InvoiceApp)this.Parent).RedirectUrl = "/invoice/" + InvoiceNo; //redirect to the new URL
     }
 
     void Handle(Input.Cancel action) {
@@ -37,5 +38,6 @@ partial class InvoicePage : Json, IBound<Invoice> {
         ((InvoiceApp)this.Parent).Invoices = Db.SQL(
           "SELECT i FROM Invoice i"); //refresh invoices list
         Data = new Invoice(); //display fresh invoice after one was deleted
+        ((InvoiceApp)this.Parent).RedirectUrl = "/"; //redirect to the home URL
     }
 }
