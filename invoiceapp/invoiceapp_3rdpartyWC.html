@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <head>
     <title>Invoice app</title>
-    <script src="/bower_components/platform/platform.js"></script>
-    <link rel="import" href="/sys/starcounter.html" />
+    <script src="/sys/webcomponentsjs/webcomponents.js"></script><!-- load Web Components polyfill for all browsers -->
+    <link rel="import" href="/sys/starcounter.html"><!-- import Web Components needed for client-server sync -->
+    <link rel="stylesheet" href="/style.css"><!-- load stylesheet -->
+    <link rel="import" href="/sys/twbs-buttons/src/twbs-button.html">
+    <link rel="import" href="/sys/gaplyk/src/input-currency.html">
     <style>
       body { font-family: Calibri, Helvetica, Arial, sans-serif; margin: 20px 40px; display: flex; }
       section {flex: 0 1 auto}
@@ -30,7 +33,7 @@
                       </template>
               </tbody>
           </table>
-          <twbs-button onclick="getModel(this).Add$ = null">Add invoice</twbs-button>
+          <twbs-button onclick="getModel(this).Add$++">Add invoice</twbs-button>
         </section>
         <section class="invoice">
             <h3>Invoice #{{Invoice.InvoiceNo}}</h3>
@@ -52,10 +55,10 @@
             </tbody>
         </table>
             <div>
-                <twbs-button style="primary" onclick="getModel(this).Invoice.AddRow$ = null">Add row</twbs-button>
-                <twbs-button style="success" onclick="getModel(this).Invoice.Save$ = null">Save</twbs-button>
-                <twbs-button style="warning" onclick="getModel(this).Invoice.Cancel$ = null">Cancel</twbs-button>
-                <twbs-button style="danger" onclick="getModel(this).Invoice.Delete$ = null">Delete</twbs-button>
+                <twbs-button style="primary" onclick="getModel(this).Invoice.AddRow$++">Add row</twbs-button>
+                <twbs-button style="success" onclick="getModel(this).Invoice.Save$++">Save</twbs-button>
+                <twbs-button style="warning" onclick="getModel(this).Invoice.Cancel$++">Cancel</twbs-button>
+                <twbs-button style="danger" onclick="getModel(this).Invoice.Delete$++">Delete</twbs-button>
             </div>
         </section>
         <link is="juicy-redirect" url="{{RedirectUrl$}}">
