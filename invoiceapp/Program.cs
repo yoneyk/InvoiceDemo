@@ -19,7 +19,7 @@ class Program {
                 app.Invoice.Data = new Invoice();
             });
 
-            app.Session = new Session();
+            app.Session = new Session(SessionOptions.PatchVersioning);
 
             return app;
         });
