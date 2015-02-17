@@ -1,6 +1,6 @@
 using Starcounter;
 
-partial class InvoicePage : Json, IBound<Invoice> {
+partial class InvoicePage : Page, IBound<Invoice> {
     void Handle(Input.AddRow action) {
         new InvoiceRow() {
             Invoice = Data
@@ -37,7 +37,6 @@ partial class InvoicePage : Json, IBound<Invoice> {
         Transaction.Commit();
         ((InvoiceApp)this.Parent).Invoices = Db.SQL(
           "SELECT i FROM Invoice i"); //refresh invoices list
-        Data = new Invoice(); //display fresh invoice after one was deleted
         ((InvoiceApp)this.Parent).RedirectUrl = "/"; //redirect to the home URL
     }
 }

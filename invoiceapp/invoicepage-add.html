@@ -1,0 +1,45 @@
+﻿<template bind>
+    <h3>Add new invoice</h3>
+    
+    <div class="invoiceSubtitle">
+      <label>Name</label>
+      <input type="text" value="{{Name$}}"/><!-- display Name$ and bind it for editing -->
+    </div>
+
+    <table class="invoiceTable">
+
+      <thead>
+      <tr>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <template repeat="{{ item in Items }}"><!-- iterate over Invoice.Items array elements to render the invoice rows -->
+        <tr>
+          <td><input type="text" value="{{item.Description$}}"/></td><!-- display Description$ and bind it for editing -->
+          <td><input update-on="input" type="number" value="{{item.Quantity$}}"/></td><!-- display Quantity$ and bind it for editing -->
+          <td><input update-on="input" type="number" value="{{item.Price$}}"/></td><!-- display Price$ and bind it for editing -->
+          <td class="readonlycell alignright">{{item.Total}}</td><!-- display Total -->
+        </tr>
+      </template>
+      </tbody>
+
+      <tfoot>
+      <tr>
+        <td colspan="3"></td>
+        <td class="total">{{Total}}</td>
+      </tr>
+      </tfoot>
+
+      <caption>
+        <button onclick="getModel(this).AddRow$++">Add row</button><!-- trigger AddRow$ handler -->
+        <button onclick="getModel(this).Save$++">Save changes</button><!-- trigger Save$ handler -->
+        <button onclick="getModel(this).Cancel$++">Cancel changes</button><!-- trigger Cancel$ handler -->
+      </caption>
+
+    </table>
+</template>
