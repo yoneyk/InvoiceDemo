@@ -32,12 +32,11 @@ class Program {
             }
 
             app.Invoices = Db.SQL("SELECT i FROM Invoice i");
-
-            app.Invoice = new InvoicePage() {
-                Html = "/invoicepage-add.html"
-            };
-            app.Invoice.Transaction = new Transaction(() => {
-                app.Invoice.Data = new Invoice();
+            app.Invoice = Db.Scope<InvoicePage>(() => {
+                return new InvoicePage() {
+                    Html = "/invoicepage-add.html",
+                    Data = new Invoice()
+                };
             });
 
             return app;
@@ -45,11 +44,11 @@ class Program {
 
         Handle.GET("/invoice/{?}", (int InvoiceNo) => {
             InvoiceApp app = InvoiceApp.GET("/");
-            app.Invoice = new InvoicePage() {
-                Html = "/invoicepage.html"
-            };
-            app.Invoice.Transaction = new Transaction(() => {
-                app.Invoice.Data = Db.SQL("SELECT i FROM Invoice i WHERE InvoiceNo = ?", InvoiceNo).First;
+            app.Invoice = Db.Scope<InvoicePage>(() => {
+                return new InvoicePage() {
+                    Html = "/invoicepage.html",
+                    Data = Db.SQL<Invoice>("SELECT i FROM Invoice i WHERE InvoiceNo = ?", InvoiceNo).First
+                };
             });
             return app.Invoice;
         });
