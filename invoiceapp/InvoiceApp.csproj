@@ -85,7 +85,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="invoiceapp.html" />
-    <Content Include="invoicepage-add.html" />
     <Content Include="invoicepage.html" />
     <Content Include="style.css" />
     <Content Include="master.html" />

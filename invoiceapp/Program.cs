@@ -34,7 +34,7 @@ class Program {
             app.Invoices = Db.SQL("SELECT i FROM Invoice i");
             app.Invoice = Db.Scope<InvoicePage>(() => {
                 return new InvoicePage() {
-                    Html = "/invoicepage-add.html",
+                    Html = "/invoicepage.html",
                     Data = new Invoice()
                 };
             });

@@ -1,5 +1,10 @@
-﻿<template bind>
-    <h3>Invoice #{{InvoiceNo}}</h3>
+<template>
+    <template if="{{InvoiceNo}}">
+      <h3>Invoice #{{InvoiceNo}}</h3>
+    </template>
+    <template if="{{!InvoiceNo}}">
+      <h3>Add new row</h3>
+    </template>
 
     <div class="invoiceSubtitle">
       <label>Name</label>
@@ -39,7 +44,10 @@
         <button onclick="getModel(this).AddRow$++">Add row</button><!-- trigger AddRow$ handler -->
         <button onclick="getModel(this).Save$++">Save changes</button><!-- trigger Save$ handler -->
         <button onclick="getModel(this).Cancel$++">Cancel changes</button><!-- trigger Cancel$ handler -->
-        <button onclick="getModel(this).Delete$++">Delete invoice</button><!-- trigger Delete$ handler -->
+        
+        <template if="{{InvoiceNo}}">
+          <button onclick="getModel(this).Delete$++">Delete invoice</button><!-- trigger Delete$ handler -->
+        </template>
       </caption>
 
     </table>
