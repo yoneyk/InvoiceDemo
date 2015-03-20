@@ -18,7 +18,7 @@ class Program {
         });
 
         Handle.GET("/", () => {
-            Master master = Master.GET("/master");
+            Master master = X.GET<Master>("/master");
             
             InvoiceApp app;
             if (master.FocusedPage is InvoiceApp) {
@@ -43,7 +43,7 @@ class Program {
         });
 
         Handle.GET("/invoice/{?}", (int InvoiceNo) => {
-            InvoiceApp app = InvoiceApp.GET("/");
+            InvoiceApp app = X.GET <InvoiceApp>("/");
             app.Invoice = Db.Scope<InvoicePage>(() => {
                 return new InvoicePage() {
                     Html = "/invoicepage.html",

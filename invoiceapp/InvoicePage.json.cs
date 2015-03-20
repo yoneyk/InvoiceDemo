@@ -13,7 +13,7 @@ partial class InvoicePage : Page, IBound<Invoice> {
               "SELECT max(i.InvoiceNo) FROM Invoice i").First + 1;
         }
         Transaction.Commit();
-        ((InvoiceApp)this.Parent).Invoices = SQL(
+        ((InvoiceApp)this.Parent).Invoices = Db.SQL(
           "SELECT i FROM Invoice i"); //refresh invoices list
         ((InvoiceApp)this.Parent).RedirectUrl = "/invoice/" + InvoiceNo; //redirect to the new URL
     }
