@@ -15,7 +15,7 @@ partial class InvoicePage : Page, IBound<Invoice> {
         Transaction.Commit();
         ((InvoiceApp)this.Parent).Invoices = Db.SQL(
           "SELECT i FROM Invoice i"); //refresh invoices list
-        ((InvoiceApp)this.Parent).RedirectUrl = "/invoice/" + InvoiceNo; //redirect to the new URL
+        ((InvoiceApp)this.Parent).RedirectUrl = "/invoicedemo/invoices/" + InvoiceNo; //redirect to the new URL
     }
 
     void Handle(Input.Cancel action) {

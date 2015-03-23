@@ -16,7 +16,7 @@
       <tbody>
       <template repeat="{{ invoice in Invoices }}"><!-- iterate over Invoices array elements to render the list of invoices -->
         <tr>
-          <td><a href="/invoice/{{invoice.InvoiceNo}}">{{invoice.InvoiceNo}}</a></td>
+          <td><a href="/invoicedemo/invoices/{{invoice.InvoiceNo}}">{{invoice.InvoiceNo}}</a></td>
           <td class="readonlycell">{{invoice.Name}}</td>
           <td class="readonlycell alignright">{{invoice.Total}}</td>
         </tr>

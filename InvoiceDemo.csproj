@@ -9,8 +9,8 @@
     <ProjectGuid>{8D848AAE-B93A-4CFD-B911-44C7FADCA6C2}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>InvoiceApp</RootNamespace>
-    <AssemblyName>InvoiceApp</AssemblyName>
+    <RootNamespace>InvoiceDemo</RootNamespace>
+    <AssemblyName>InvoiceDemo</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <UseVSHostingProcess>false</UseVSHostingProcess>
@@ -84,10 +84,10 @@
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="invoiceapp.html" />
-    <Content Include="invoicepage.html" />
-    <Content Include="style.css" />
-    <Content Include="master.html" />
+    <Content Include="wwwroot\invoiceapp.html" />
+    <Content Include="wwwroot\invoicepage.html" />
+    <Content Include="wwwroot\style.css" />
+    <Content Include="wwwroot\master.html" />
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="InvoicePage.json">

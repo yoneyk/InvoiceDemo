@@ -3,7 +3,7 @@ using Starcounter;
 
 class Program {
     static void Main() {
-        Handle.GET("/master", () => {
+        Handle.GET("/invoicedemo/master", () => {
             if (Session.Current != null) {
                 return Session.Current.Data;
             }
@@ -17,8 +17,8 @@ class Program {
             return app;
         });
 
-        Handle.GET("/", () => {
-            Master master = X.GET<Master>("/master");
+        Handle.GET("/invoicedemo", () => {
+            Master master = X.GET<Master>("/invoicedemo/master");
             
             InvoiceApp app;
             if (master.FocusedPage is InvoiceApp) {
@@ -39,18 +39,21 @@ class Program {
                 };
             });
 
-            return app;
+            return master;
         });
 
-        Handle.GET("/invoice/{?}", (int InvoiceNo) => {
-            InvoiceApp app = X.GET <InvoiceApp>("/");
+        Handle.GET("/invoicedemo/invoices/{?}", (int InvoiceNo) => {
+            Master master = X.GET<Master>("/invoicedemo");
+            InvoiceApp app = (InvoiceApp)master.FocusedPage;
             app.Invoice = Db.Scope<InvoicePage>(() => {
                 return new InvoicePage() {
                     Html = "/invoicepage.html",
                     Data = Db.SQL<Invoice>("SELECT i FROM Invoice i WHERE InvoiceNo = ?", InvoiceNo).First
                 };
             });
-            return app.Invoice;
+            return master;
         });
+
+        PolyjuiceNamespace.Polyjuice.Map("/invoicedemo", "/");
     }
 }
