@@ -6,12 +6,12 @@ public class Invoice {
     public string Name;
     public decimal Total {
         get {
-            return Db.SQL<decimal>("SELECT sum(o.Total) FROM InvoiceRow o WHERE o.Invoice=?", this).First;
+            return Db.SQL<decimal>("SELECT sum(r.Total) FROM InvoiceRow r WHERE r.Invoice=?", this).First;
         }
     }
     public QueryResultRows<InvoiceRow> Items {
         get {
-            return Db.SQL<InvoiceRow>("SELECT o FROM InvoiceRow o WHERE o.Invoice=?", this);
+            return Db.SQL<InvoiceRow>("SELECT r FROM InvoiceRow r WHERE r.Invoice=?", this);
         }
     }
 }
