@@ -9,7 +9,7 @@ class Program {
             }
 
             var app = new Master() {
-                Html = "/Master_.html"
+                Html = "/Master.html"
             };
 
             app.Session = new Session(SessionOptions.PatchVersioning);

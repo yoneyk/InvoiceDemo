@@ -87,7 +87,7 @@
     <Content Include="wwwroot\InvoicesPage.html" />
     <Content Include="wwwroot\InvoicePage.html" />
     <Content Include="wwwroot\style.css" />
-    <Content Include="wwwroot\Master_.html" />
+    <Content Include="wwwroot\Master.html" />
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="InvoicePage.json">
