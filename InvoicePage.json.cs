@@ -13,9 +13,9 @@ partial class InvoicePage : Page, IBound<Invoice> {
               "SELECT max(i.InvoiceNo) FROM Invoice i").First + 1;
         }
         Transaction.Commit();
-        ((InvoiceApp)this.Parent).Invoices = Db.SQL(
+        ((InvoicesPage)this.Parent).Invoices = Db.SQL(
           "SELECT i FROM Invoice i"); //refresh invoices list
-        ((InvoiceApp)this.Parent).RedirectUrl = "/invoicedemo/invoices/" + InvoiceNo; //redirect to the new URL
+        ((InvoicesPage)this.Parent).RedirectUrl = "/invoicedemo/invoices/" + InvoiceNo; //redirect to the new URL
     }
 
     void Handle(Input.Cancel action) {
@@ -35,8 +35,8 @@ partial class InvoicePage : Page, IBound<Invoice> {
         }
         Data.Delete();
         Transaction.Commit();
-        ((InvoiceApp)this.Parent).Invoices = Db.SQL(
+        ((InvoicesPage)this.Parent).Invoices = Db.SQL(
           "SELECT i FROM Invoice i"); //refresh invoices list
-        ((InvoiceApp)this.Parent).RedirectUrl = "/"; //redirect to the home URL
+        ((InvoicesPage)this.Parent).RedirectUrl = "/"; //redirect to the home URL
     }
 }

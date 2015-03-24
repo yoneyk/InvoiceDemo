@@ -9,7 +9,7 @@ class Program {
             }
 
             var app = new Master() {
-                Html = "/master.html"
+                Html = "/Master_.html"
             };
 
             app.Session = new Session(SessionOptions.PatchVersioning);
@@ -20,13 +20,13 @@ class Program {
         Handle.GET("/invoicedemo", () => {
             Master master = X.GET<Master>("/invoicedemo/master");
             
-            InvoiceApp app;
-            if (master.FocusedPage is InvoiceApp) {
-                app = (InvoiceApp)master.FocusedPage;
+            InvoicesPage app;
+            if (master.FocusedPage is InvoicesPage) {
+                app = (InvoicesPage)master.FocusedPage;
             } 
             else {
-                app = new InvoiceApp() {
-                    Html = "/invoiceapp.html"
+                app = new InvoicesPage() {
+                    Html = "/InvoicesPage.html"
                 };
                 master.FocusedPage = app;
             }
@@ -34,7 +34,7 @@ class Program {
             app.Invoices = Db.SQL("SELECT i FROM Invoice i");
             app.Invoice = Db.Scope<InvoicePage>(() => {
                 return new InvoicePage() {
-                    Html = "/invoicepage.html",
+                    Html = "/InvoicePage.html",
                     Data = new Invoice()
                 };
             });
@@ -44,10 +44,10 @@ class Program {
 
         Handle.GET("/invoicedemo/invoices/{?}", (int InvoiceNo) => {
             Master master = X.GET<Master>("/invoicedemo");
-            InvoiceApp app = (InvoiceApp)master.FocusedPage;
+            InvoicesPage app = (InvoicesPage)master.FocusedPage;
             app.Invoice = Db.Scope<InvoicePage>(() => {
                 return new InvoicePage() {
-                    Html = "/invoicepage.html",
+                    Html = "/InvoicePage.html",
                     Data = Db.SQL<Invoice>("SELECT i FROM Invoice i WHERE InvoiceNo = ?", InvoiceNo).First
                 };
             });

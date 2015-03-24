@@ -66,8 +66,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database.cs" />
-    <Compile Include="InvoiceApp.json.cs">
-      <DependentUpon>InvoiceApp.json</DependentUpon>
+    <Compile Include="InvoicesPage.json.cs">
+      <DependentUpon>InvoicesPage.json</DependentUpon>
     </Compile>
     <Compile Include="InvoicePage.json.cs">
       <DependentUpon>InvoicePage.json</DependentUpon>
@@ -79,15 +79,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="InvoiceApp.json">
+    <TypedJSON Include="InvoicesPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="wwwroot\invoiceapp.html" />
-    <Content Include="wwwroot\invoicepage.html" />
+    <Content Include="wwwroot\InvoicesPage.html" />
+    <Content Include="wwwroot\InvoicePage.html" />
     <Content Include="wwwroot\style.css" />
-    <Content Include="wwwroot\master.html" />
+    <Content Include="wwwroot\Master_.html" />
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="InvoicePage.json">
