@@ -1,41 +1,42 @@
 ﻿<link rel="import" href="/sys/puppet-redirect/src/puppet-redirect.html">
 
-<template bind>
-    <section><!-- start left pane of the UI -->
-    <h3>Invoices</h3>
+<template>
+    <!-- start left pane of the UI -->
+    <section class="list">
+        <h3>Invoices</h3>
 
-    <table class="invoiceTable">
-      <thead>
-      <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>Total</th>
-      </tr>
-      </thead>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Total</th>
+            </tr>
+            </thead>
 
-      <tbody>
-      <template repeat="{{ invoice in Invoices }}"><!-- iterate over Invoices array elements to render the list of invoices -->
-        <tr>
-          <td><a href="/invoicedemo/invoices/{{invoice.InvoiceNo}}">{{invoice.InvoiceNo}}</a></td>
-          <td class="readonlycell">{{invoice.Name}}</td>
-          <td class="readonlycell alignright">{{invoice.Total}}</td>
-        </tr>
-      </template>
-      </tbody>
+            <tbody>
+            <template repeat="{{ invoice in Invoices }}">
+                <!-- iterate over Invoices array elements to render the list of invoices -->
+                <tr>
+                    <td><a href="/invoicedemo/invoice/{{invoice.InvoiceNo}}">{{invoice.InvoiceNo}}</a></td>
+                    <td class="readonlycell">{{invoice.Name}}</td>
+                    <td class="readonlycell alignright">{{invoice.Total}}</td>
+                </tr>
+            </template>
+            </tbody>
+        </table>
 
-      <caption>
         <a href="/">Add invoice</a>
-      </caption>
+    </section>
+    <!-- end left pane of the UI -->
 
-    </table>
-  </section><!-- end left pane of the UI -->
+    <!-- start right pane of the UI -->
+    <section class="invoice">
+        <template bind="{{Invoice}}">
+            <template is="imported-template" content="{{Html}}"></template>
+        </template>
+    </section>
+    <!-- end right pane of the UI -->
 
-  <section class="invoice"><!-- start right pane of the UI -->
-
-    <template bind="{{Invoice}}">
-        <template is="imported-template" content="{{Html}}"></template>
-    </template>
-
-  </section><!-- end right pane of the UI -->
-  <link is="puppet-redirect" history url="{{RedirectUrl$}}">
+    <link is="puppet-redirect" history url="{{RedirectUrl$}}">
 </template>
