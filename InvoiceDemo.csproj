@@ -72,9 +72,6 @@
     <Compile Include="InvoicePage.json.cs">
       <DependentUpon>InvoicePage.json</DependentUpon>
     </Compile>
-    <Compile Include="Master.json.cs">
-      <DependentUpon>Master.json</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -87,15 +84,9 @@
     <Content Include="wwwroot\InvoicesPage.html" />
     <Content Include="wwwroot\InvoicePage.html" />
     <Content Include="wwwroot\style.css" />
-    <Content Include="wwwroot\Master.html" />
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="InvoicePage.json">
-      <Generator>MsBuild:Compile</Generator>
-    </TypedJSON>
-  </ItemGroup>
-  <ItemGroup>
-    <TypedJSON Include="Master.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
