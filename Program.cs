@@ -1,5 +1,6 @@
 ﻿using System;
 using Starcounter;
+using PolyjuiceNamespace;
 
 class Program {
     static void Main() {
@@ -26,7 +27,7 @@ class Program {
         });
 
         Handle.GET("/invoicedemo/invoices/{?}", (int InvoiceNo) => {
-            InvoicesPage app = X.GET<InvoicesPage>("/invoicedemo");
+            InvoicesPage app = Self.GET<InvoicesPage>("/invoicedemo");
             app.Invoice = Db.Scope<InvoicePage>(() => {
                 return new InvoicePage() {
                     Html = "/InvoicePage.html",
@@ -36,6 +37,6 @@ class Program {
             return app;
         });
 
-        PolyjuiceNamespace.Polyjuice.Map("/invoicedemo", "/");
+        Polyjuice.Map("/invoicedemo", "/");
     }
 }
