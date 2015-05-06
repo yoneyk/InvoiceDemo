@@ -6,7 +6,7 @@
     <ProductVersion>9.0.20706</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectTypeGuids>{C86118D7-451E-4933-BFEE-A1EFDB162FD7};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{8D848AAE-B93A-4CFD-B911-44C7FADCA6C2}</ProjectGuid>
+    <ProjectGuid>{C4E258B7-C749-472C-8DA6-EC68FA83B134}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>InvoiceDemo</RootNamespace>
@@ -28,7 +28,6 @@
     <Prefer32Bit>false</Prefer32Bit>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <PlatformTarget>x64</PlatformTarget>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
     <DebugType>pdbonly</DebugType>
@@ -66,27 +65,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database.cs" />
-    <Compile Include="InvoicesPage.json.cs">
-      <DependentUpon>InvoicesPage.json</DependentUpon>
-    </Compile>
     <Compile Include="InvoicePage.json.cs">
       <DependentUpon>InvoicePage.json</DependentUpon>
+    </Compile>
+    <Compile Include="InvoicesPage.json.cs">
+      <DependentUpon>InvoicesPage.json</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <TypedJSON Include="InvoicesPage.json">
-      <Generator>MsBuild:Compile</Generator>
-    </TypedJSON>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="wwwroot\InvoicesPage.html" />
     <Content Include="wwwroot\InvoicePage.html" />
+    <Content Include="wwwroot\InvoicesPage.html" />
     <Content Include="wwwroot\style.css" />
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="InvoicePage.json">
+      <Generator>MsBuild:Compile</Generator>
+    </TypedJSON>
+  </ItemGroup>
+  <ItemGroup>
+    <TypedJSON Include="InvoicesPage.json">
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
