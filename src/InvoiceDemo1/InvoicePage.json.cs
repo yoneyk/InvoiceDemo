@@ -10,7 +10,7 @@ partial class InvoicePage : Page, IBound<Invoice> {
 
     void Handle(Input.Save action) {
         bool isUnsavedInvoice = (InvoiceNo == 0); // A new invoice
-        if (isUnsavedInvoice) { . 
+        if (isUnsavedInvoice) {
             InvoiceNo = (int)Db.SQL<long>(
               "SELECT max(i.InvoiceNo) FROM Invoice i").First + 1;
         }
