@@ -9,7 +9,8 @@ partial class InvoicePage : Page, IBound<Invoice> {
     }
 
     void Handle(Input.Save action) {
-        if (InvoiceNo == 0) { // A new invoice. 
+        bool isUnsavedInvoice = (InvoiceNo == 0); // A new invoice
+        if (isUnsavedInvoice) { . 
             InvoiceNo = (int)Db.SQL<long>(
               "SELECT max(i.InvoiceNo) FROM Invoice i").First + 1;
         }
@@ -19,7 +20,7 @@ partial class InvoicePage : Page, IBound<Invoice> {
     }
 
     void Handle(Input.Cancel action) {
-        bool isUnsavedInvoice = (InvoiceNo == 0);
+        bool isUnsavedInvoice = (InvoiceNo == 0); // A new invoice
         Transaction.Rollback();
         if (isUnsavedInvoice) {
             Data = new Invoice();

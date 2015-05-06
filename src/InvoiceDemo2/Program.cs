@@ -1,6 +1,5 @@
 ﻿using System;
 using Starcounter;
-using PolyjuiceNamespace;
 
 class Program {
     static void Main() {
@@ -37,6 +36,6 @@ class Program {
             return app;
         });
 
-        //Polyjuice.Map("/invoicedemo", "/");
+        //PolyjuiceNamespace.Polyjuice.Map("/invoicedemo", "/");
     }
 }
