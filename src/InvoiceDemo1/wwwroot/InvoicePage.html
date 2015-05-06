@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invoices</title>
+    <meta charset="utf-8">
+    <!-- load Web Components polyfill for all browsers -->
+    <script src="/sys/webcomponentsjs/webcomponents.js"></script>
+    <!-- import Web Components needed for client-server sync -->
+    <link rel="import" href="/sys/starcounter.html">
+    <!-- load stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+<!-- Create document template, which is to be bound to the JSON view-model -->
+<template id="root" bind>
+    <div>
+    <template if="{{InvoiceNo}}">
+        <h3>Invoice #{{InvoiceNo}}</h3>
+    </template>
+    <template if="{{!InvoiceNo}}">
+        <h3>Add new invoice</h3>
+    </template>
+
+    <div class="subtitle">
+        <label>Customer name</label>
+        <!-- Display Name$ and bind it for editing -->
+        <input type="text" value="{{Name$}}"/>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <template repeat="{{ item in Items }}">
+            <!-- Iterate over Invoice.Items array elements to render the invoice rows -->
+            <tr>
+                <!-- Display item properties and bind them for editing -->
+                <td><input type="text" value="{{item.Description$}}"/></td>
+                <td><input update-on="input" type="number" value="{{item.Quantity$}}"/></td>
+                <td><input update-on="input" type="number" value="{{item.Price$}}"/></td>
+                <!-- Display readonly Total property -->
+                <td class="readonlycell alignright">{{item.Total}}</td>
+            </tr>
+        </template>
+        </tbody>
+
+        <tfoot>
+        <tr>
+            <td colspan="3"></td>
+            <td class="total">{{Total}}</td>
+        </tr>
+        </tfoot>
+    </table>
+
+    <!-- Trigger button handlers on click -->
+    <button onclick="getModel(this).AddRow$++">Add row</button>
+    <button onclick="getModel(this).Save$++">Save changes</button>
+    <button onclick="getModel(this).Cancel$++">Cancel changes</button>
+    </div>
+</template>
+
+<!-- Plug in client-server sync -->
+<puppet-client ref="root"></puppet-client>
+</body>
+</html>
