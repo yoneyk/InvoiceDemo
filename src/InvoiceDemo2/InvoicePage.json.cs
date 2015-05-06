@@ -1,6 +1,10 @@
 using Starcounter;
+using System;
 
 partial class InvoicePage : Page, IBound<Invoice> {
+    public Action OnSave = () => { };
+    public Action OnDelete = () => { };
+
     void Handle(Input.AddRow action) {
         new InvoiceRow() {
             Invoice = Data,
@@ -10,13 +14,13 @@ partial class InvoicePage : Page, IBound<Invoice> {
 
     void Handle(Input.Save action) {
         bool isUnsavedInvoice = (InvoiceNo == 0); // A new invoice
-        if (isUnsavedInvoice) { . 
+        if (isUnsavedInvoice) {
             InvoiceNo = (int)Db.SQL<long>(
               "SELECT max(i.InvoiceNo) FROM Invoice i").First + 1;
         }
         Transaction.Commit();
-        ((InvoicesPage)this.Parent).Invoices = Db.SQL(
-          "SELECT i FROM Invoice i"); //refresh invoices list
+        OnSave();
+        RedirectUrl = "/invoicedemo/invoices/" + InvoiceNo; //redirect to the new URL
     }
 
     void Handle(Input.Cancel action) {
@@ -36,7 +40,7 @@ partial class InvoicePage : Page, IBound<Invoice> {
         }
         Data.Delete();
         Transaction.Commit();
-        ((InvoicesPage)this.Parent).Invoices = Db.SQL(
-          "SELECT i FROM Invoice i"); //refresh invoices list
+        OnDelete();
+        RedirectUrl = "/invoicedemo"; //redirect to the home URL		
     }
 }

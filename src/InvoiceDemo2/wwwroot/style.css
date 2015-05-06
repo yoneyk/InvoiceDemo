@@ -2,12 +2,39 @@ body {
     background: #ffffff;
     font-family: sans-serif;
     font-weight: normal;
-    display: flex;
     margin: 0px;
+    padding: 0;
+}
+
+.invoicedemo.menu {
+    display: block;
+    list-style-type: none;
+    padding: 0 0 0 40px;
+    margin: 0;
+    background-color: #4479BA;
+    border-bottom: 1px solid #C0C0C0;
+}
+
+.invoicedemo.menu li {
+    display: inline-block;
+    padding: 10px 20px 10px 0;
+}
+
+.invoicedemo.menu li a {
+    text-decoration: none;
+    color: white;
+}
+
+.invoicedemo.menu li a:hover {
+    text-decoration: underline;
+}
+
+.invoicedemo.panes {
+    display: flex;
     padding: 10px;
 }
 
-section {
+.invoicedemo.panes section {
     flex: 1 1 auto;
     border: 1px solid rgb(226, 226, 226);
     background: #FCFCFC;
@@ -16,20 +43,23 @@ section {
     margin: 10px;
 }
 
-section.list {
+.invoicedemo.panes section.list {
     flex: 0 1 auto;
 }
 
-input, select, textarea, button {
+.invoicedemo input,
+.invoicedemo select,
+.invoicedemo textarea,
+.invoicedemo button {
     font-family: inherit;
 }
 
-input {
+.invoicedemo input {
     font-size: 100%;
 }
 
 /* Header */
-h3 {
+.invoicedemo h3 {
     margin: 0px 0px 10px 0px;
     padding: 0px;
     font-size: 24px;
@@ -37,27 +67,27 @@ h3 {
     color: black;
 }
 
-.subtitle {
+.invoicedemo .subtitle {
     margin: 10px 0px 20px 0px;
 }
 
-.subtitle label {
+.invoicedemo .subtitle label {
     display: block;
     margin-bottom: 3px;
 }
 
-.subtitle input {
+.invoicedemo .subtitle input {
     margin-top: 3px;
     padding: 6px 10px 6px 10px;
     border: 1px solid #cccccc;
 }
 
-table {
+.invoicedemo table {
     border-collapse: collapse;
     margin-bottom: 10px;
 }
 
-table th {
+.invoicedemo table th {
     border-width: 1px 1px 1px 1px;
     padding-top: 8px;
     padding-bottom: 8px;
@@ -69,17 +99,17 @@ table th {
     min-width: 100px;
 }
 
-table th:first-child {
+.invoicedemo table th:first-child {
     text-align: left;
     padding-left: 10px;
 }
 
-table th:last-child {
+.invoicedemo table th:last-child {
     text-align: right;
     padding-right: 10px;
 }
 
-table td {
+.invoicedemo table td {
     border-width: 1px;
     padding: 0px;
     margin: 0px;
@@ -88,32 +118,32 @@ table td {
     background-color: #ffffff;
 }
 
-table td input {
+.invoicedemo .invoicedemo table td input {
     margin: 0px;
     padding: 6px 10px 6px 10px;
     border-width: 0px;
 }
 
-table td input[type=number] {
+.invoicedemo table td input[type=number] {
     text-align: right;
     padding-right: 0px;
 }
 
-table td.readonlycell {
+.invoicedemo table td.readonlycell {
     padding: 6px 10px 6px 10px;
 }
 
-table td.alignright {
+.invoicedemo table td.alignright {
     text-align: right;
 }
 
-table tfoot td:first-child {
+.invoicedemo table tfoot td:first-child {
     border-left-width: 0;
     border-bottom-width: 0;
     background-color: transparent;
 }
 
-button {
+.invoicedemo button {
     margin: 0px 4px 6px 0;
     padding: 8px 15px 8px 15px;
     background: #4479BA;
@@ -121,7 +151,11 @@ button {
     border: 0px;
 }
 
-table .total {
+.invoicedemo button:hover {
+    cursor: pointer;
+}
+
+.invoicedemo table .total {
     background: #eeeeee;
     text-align: right;
     color: black;
@@ -129,25 +163,20 @@ table .total {
     font-weight: bold;
 }
 
-button:hover, button:focus {
-    -webkit-animation: pulsate 1.2s linear infinite;
-    animation: pulsate 1.2s linear infinite;
-}
-
-table a:link {
+.invoicedemo table a:link {
     text-align: center;
     color: #3d85b4;
     text-decoration: underline;
     padding: 6px 10px 6px 10px;
 }
 
-table a:visited {
+.invoicedemo table a:visited {
     color: #3d85b4;
-    text-decoration: underline
+    text-decoration: underline;
 }
 
-table a:active,
-table a:hover {
+.invoicedemo table a:active,
+.invoicedemo table a:hover {
     color: #59a0c3;
-    text-decoration: underline
+    text-decoration: underline;
 }

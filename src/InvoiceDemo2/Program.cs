@@ -1,41 +1,53 @@
-﻿using System;
+using System;
 using Starcounter;
 
 class Program {
     static void Main() {
         Handle.GET("/invoicedemo", () => {
-            InvoicesPage app;
+            MasterPage master;
             if (Session.Current != null) {
-                app = (InvoicesPage)Session.Current.Data;
+                master = (MasterPage)Session.Current.Data;
             } else {
-                app = new InvoicesPage() {
+                master = new MasterPage() {
+                    Html = "/MasterPage.html"
+                };
+                master.Session = new Session(SessionOptions.PatchVersioning);
+                master.RecentInvoices = new InvoicesPage() {
                     Html = "/InvoicesPage.html"
                 };
-                app.Session = new Session(SessionOptions.PatchVersioning);
             }
 
-            app.Invoices = Db.SQL("SELECT i FROM Invoice i");
-            app.Invoice = Db.Scope<InvoicePage>(() => {
-                return new InvoicePage() {
-                    Html = "/InvoicePage.html",
-                    Data = new Invoice()
-                };
-            });
-
-            return app;
+            master.RefreshList();
+            master.FocusedInvoice = null;
+            return master;
         });
 
         Handle.GET("/invoicedemo/invoices/{?}", (int InvoiceNo) => {
-            InvoicesPage app = Self.GET<InvoicesPage>("/invoicedemo");
-            app.Invoice = Db.Scope<InvoicePage>(() => {
-                return new InvoicePage() {
+            MasterPage master = X.GET<MasterPage>("/invoicedemo");
+            master.FocusedInvoice = Db.Scope<InvoicePage>(() => {
+                var page = new InvoicePage() {
                     Html = "/InvoicePage.html",
                     Data = Db.SQL<Invoice>("SELECT i FROM Invoice i WHERE InvoiceNo = ?", InvoiceNo).First
                 };
+                page.OnSave = master.RefreshList;
+                page.OnDelete = master.RefreshList;
+                return page;
             });
-            return app;
+            return master;
         });
 
-        //PolyjuiceNamespace.Polyjuice.Map("/invoicedemo", "/");
+        Handle.GET("/invoicedemo/new-invoice", () => {
+            MasterPage master = X.GET<MasterPage>("/invoicedemo");
+            master.FocusedInvoice = Db.Scope<InvoicePage>(() => {
+                var page = new InvoicePage() {
+                    Html = "/InvoicePage.html",
+                    Data = new Invoice()
+                };
+                page.OnSave = master.RefreshList;
+                page.OnDelete = master.RefreshList;
+                return page;
+            });
+            return master;
+        });
     }
 }

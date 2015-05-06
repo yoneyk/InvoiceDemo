@@ -12,5 +12,6 @@
   "AddRow$": 0,
   "Save$": 0,
   "Cancel$": 0,
-  "Delete$": 0
+  "Delete$": 0,
+  "RedirectUrl$": ""
 }
