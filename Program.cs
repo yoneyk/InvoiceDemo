@@ -37,6 +37,6 @@ class Program {
             return app;
         });
 
-        Polyjuice.Map("/invoicedemo", "/");
+        //Polyjuice.Map("/invoicedemo", "/");
     }
 }
