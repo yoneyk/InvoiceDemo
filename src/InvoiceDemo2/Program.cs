@@ -17,7 +17,7 @@ class Program {
                 };
             }
 
-            master.RefreshList();
+            ((InvoicesPage)master.RecentInvoices).RefreshData();
             master.FocusedInvoice = null;
             return master;
         });
@@ -29,8 +29,8 @@ class Program {
                     Html = "/InvoicePage.html",
                     Data = Db.SQL<Invoice>("SELECT i FROM Invoice i WHERE InvoiceNo = ?", InvoiceNo).First
                 };
-                page.OnSave = master.RefreshList;
-                page.OnDelete = master.RefreshList;
+                page.OnSave = ((InvoicesPage)master.RecentInvoices).RefreshData;
+                page.OnDelete = ((InvoicesPage)master.RecentInvoices).RefreshData;
                 return page;
             });
             return master;
@@ -43,8 +43,8 @@ class Program {
                     Html = "/InvoicePage.html",
                     Data = new Invoice()
                 };
-                page.OnSave = master.RefreshList;
-                page.OnDelete = master.RefreshList;
+                page.OnSave = ((InvoicesPage)master.RecentInvoices).RefreshData;
+                page.OnDelete = ((InvoicesPage)master.RecentInvoices).RefreshData;
                 return page;
             });
             return master;
