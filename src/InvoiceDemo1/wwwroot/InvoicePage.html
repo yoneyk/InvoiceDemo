@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>Invoices</title>
@@ -9,6 +9,8 @@
     <link rel="import" href="/sys/starcounter.html">
     <!-- load stylesheet -->
     <link rel="stylesheet" href="/style.css">
+
+    <link rel="import" href="/sys/starcounter-debug-aid/src/starcounter-debug-aid.html">
 </head>
 
 <body>
@@ -73,5 +75,6 @@
 
 <!-- Plug in client-server sync -->
 <puppet-client ref="root"></puppet-client>
+<starcounter-debug-aid></starcounter-debug-aid>
 </body>
 </html>
