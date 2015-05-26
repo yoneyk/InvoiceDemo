@@ -14,6 +14,12 @@ public class Invoice {
             return Db.SQL<InvoiceRow>("SELECT r FROM InvoiceRow r WHERE r.Invoice=?", this);
         }
     }
+
+    public Invoice() {
+        new InvoiceRow() {
+          Invoice = this
+        };
+    }
 }
 
 [Database]
@@ -26,5 +32,9 @@ public class InvoiceRow {
         get {
             return Quantity * Price;
         }
+    }
+
+    public InvoiceRow() {
+        Quantity = 1;
     }
 }

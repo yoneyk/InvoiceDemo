@@ -7,8 +7,7 @@ partial class InvoicePage : Page, IBound<Invoice> {
 
     void Handle(Input.AddRow action) {
         new InvoiceRow() {
-            Invoice = Data,
-            Quantity = 1
+            Invoice = Data
         };
     }
 
