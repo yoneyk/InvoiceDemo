@@ -44,7 +44,21 @@ body {
 }
 
 .invoicedemo.panes section.list {
-    flex: 0 1 auto;
+    flex: 1 0 auto;
+    width: 225px;
+}
+
+.invoicedemo.panes section.invoice {
+    flex: 4 0 auto;
+    width: 450px;
+}
+
+.invoicedemo.panes section.invoice .invoice-item-cell {
+    width: 20%;
+}
+
+.invoicedemo.panes section.invoice .invoice-item-cell:first-child {
+    width: 40%;
 }
 
 .invoicedemo input,
@@ -86,6 +100,8 @@ body {
     display: table;
     border-collapse: collapse;
     margin-bottom: 10px;
+    width: 100%;
+    max-width: 800px;
 }
 
 .invoicedemo .invoice-items-body {
@@ -105,7 +121,6 @@ body {
     color: #000000;
     background-color: #eeeeee;
     font-weight: bold;
-    min-width: 100px;
     text-align: center;
 }
 
@@ -142,11 +157,14 @@ body {
     margin: 0px;
     padding: 8px 10px 8px 10px;
     border-width: 0px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.invoicedemo .invoice-item-cell input[type=number] {
+.invoicedemo .invoice-item-cell input[type=number],
+.invoicedemo .invoice-item-cell input.number {
     text-align: right;
-    padding-right: 0px;
+    /*padding-right: 0px;*/
 }
 
 .invoicedemo .invoice-item-cell.readonlycell {
@@ -176,28 +194,20 @@ body {
     cursor: pointer;
 }
 
-.invoicedemo table .total {
-    background: #eeeeee;
-    text-align: right;
-    color: black;
-    padding: 6px 10px 6px 10px;
-    font-weight: bold;
-}
-
-.invoicedemo table a:link {
+.invoicedemo .invoice-item-cell a:link {
     text-align: center;
     color: #3d85b4;
     text-decoration: underline;
     padding: 6px 10px 6px 10px;
 }
 
-.invoicedemo table a:visited {
+.invoicedemo .invoice-item-cell a:visited {
     color: #3d85b4;
     text-decoration: underline;
 }
 
-.invoicedemo table a:active,
-.invoicedemo table a:hover {
+.invoicedemo .invoice-item-cell a:active,
+.invoicedemo .invoice-item-cell a:hover {
     color: #59a0c3;
     text-decoration: underline;
 }

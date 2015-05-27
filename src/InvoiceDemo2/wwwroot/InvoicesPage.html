@@ -15,7 +15,7 @@
             We don't use <table><tr><td> because <template repeat> has problems in native table in IE11 as of Polymer 0.5 combined with <template is="imported-template">
             -->
             <div class="invoice-item">
-                <div class="invoice-item-cell"><a href="/invoicedemo/invoices/{{InvoiceNo}}">{{InvoiceNo}}</a></div>
+                <div class="invoice-item-cell readonlycell"><a href="/invoicedemo/invoices/{{InvoiceNo}}">{{InvoiceNo}}</a></div>
                 <div class="invoice-item-cell readonlycell">{{Name}}</div>
                 <div class="invoice-item-cell readonlycell alignright">{{Total}}</div>
             </div>
