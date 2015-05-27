@@ -32,37 +32,35 @@
         <input type="text" value="{{Name$}}"/>
     </div>
 
-    <table>
-        <thead>
-        <tr>
-            <th>Description</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Total</th>
-        </tr>
-        </thead>
+    <div class="invoice-items">
+        <div class="invoice-items-head">
+            <div class="invoice-item-cell">Description</div>
+            <div class="invoice-item-cell">Quantity</div>
+            <div class="invoice-item-cell">Price</div>
+            <div class="invoice-item-cell">Total</div>
+        </div>
 
-        <tbody>
+        <div class="invoice-items-body">
         <template repeat="{{ item in Items }}">
             <!-- Iterate over Invoice.Items array elements to render the invoice rows -->
-            <tr>
+            <div class="invoice-item">
                 <!-- Display item properties and bind them for editing -->
-                <td><input type="text" value="{{item.Description$}}"/></td>
-                <td><input update-on="input" type="number" value="{{item.Quantity$}}"/></td>
-                <td><input update-on="input" type="number" value="{{item.Price$}}"/></td>
+                <div class="invoice-item-cell"><input type="text" value="{{item.Description$}}"/></div>
+                <div class="invoice-item-cell"><input type="number" value="{{item.Quantity$}}"/></div>
+                <div class="invoice-item-cell"><input type="number" value="{{item.Price$}}"/></div>
                 <!-- Display readonly Total property -->
-                <td class="readonlycell alignright">{{item.Total}}</td>
-            </tr>
+                <div class="invoice-item-cell readonlycell alignright">{{item.Total}}</div>
+            </div>
         </template>
-        </tbody>
+        </div>
 
-        <tfoot>
-        <tr>
-            <td colspan="3"></td>
-            <td class="total">{{Total}}</td>
-        </tr>
-        </tfoot>
-    </table>
+        <div class="invoice-items-foot">
+            <div class="invoice-item-cell"></div>
+            <div class="invoice-item-cell"></div>
+            <div class="invoice-item-cell"></div>
+            <div class="invoice-item-cell">{{Total}}</div>
+        </div>
+    </div>
 
     <!-- Trigger button handlers on click -->
     <button onclick="getModel(this).AddRow$++">Add row</button>
