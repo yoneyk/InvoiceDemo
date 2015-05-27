@@ -42,7 +42,10 @@
 
         <div class="invoice-items-body">
         <template repeat="{{ item in Items }}">
-            <!-- Iterate over Invoice.Items array elements to render the invoice rows -->
+            <!-- 
+            Iterate over Invoice.Items array elements to render the invoice rows 
+            We don't use <table><tr><td> because <template repeat> has problems in native table in IE11 as of Polymer 0.5 combined with <template is="imported-template">
+            -->
             <div class="invoice-item">
                 <!-- Display item properties and bind them for editing -->
                 <div class="invoice-item-cell"><input type="text" value="{{item.Description$}}"/></div>

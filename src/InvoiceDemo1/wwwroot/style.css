@@ -106,6 +106,7 @@ body {
     background-color: #eeeeee;
     font-weight: bold;
     min-width: 100px;
+    text-align: center;
 }
 
 .invoicedemo .invoice-items-foot {
