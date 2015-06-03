@@ -17,7 +17,7 @@ public class Invoice {
 
     public Invoice() {
         new InvoiceRow() {
-          Invoice = this
+            Invoice = this
         };
     }
 }
