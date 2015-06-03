@@ -23,7 +23,7 @@ class Program {
         });
 
         Handle.GET("/invoicedemo/invoices/{?}", (int InvoiceNo) => {
-            MasterPage master = X.GET<MasterPage>("/invoicedemo");
+            MasterPage master = Self.GET<MasterPage>("/invoicedemo");
             master.FocusedInvoice = Db.Scope<InvoicePage>(() => {
                 var page = new InvoicePage() {
                     Html = "/InvoicePage.html",
@@ -37,7 +37,7 @@ class Program {
         });
 
         Handle.GET("/invoicedemo/new-invoice", () => {
-            MasterPage master = X.GET<MasterPage>("/invoicedemo");
+            MasterPage master = Self.GET<MasterPage>("/invoicedemo");
             master.FocusedInvoice = Db.Scope<InvoicePage>(() => {
                 var page = new InvoicePage() {
                     Html = "/InvoicePage.html",
