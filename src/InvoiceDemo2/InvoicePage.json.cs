@@ -2,8 +2,8 @@ using Starcounter;
 using System;
 
 partial class InvoicePage : Page, IBound<Invoice> {
-    public Action OnSave = () => { };
-    public Action OnDelete = () => { };
+    public event EventHandler Saved;
+    public event EventHandler Deleted;
 
     void Handle(Input.AddRow action) {
         new InvoiceRow() {
@@ -18,7 +18,7 @@ partial class InvoicePage : Page, IBound<Invoice> {
               "SELECT max(i.InvoiceNo) FROM Invoice i").First + 1;
         }
         Transaction.Commit();
-        OnSave();
+        OnSaved();
         RedirectUrl = "/invoicedemo/invoices/" + InvoiceNo; //redirect to the new URL
     }
 
@@ -39,7 +39,19 @@ partial class InvoicePage : Page, IBound<Invoice> {
         }
         Data.Delete();
         Transaction.Commit();
-        OnDelete();
+        OnDeleted();
         RedirectUrl = "/invoicedemo"; //redirect to the home URL		
+    }
+
+    protected void OnSaved() {
+        if (this.Saved != null) {
+            this.Saved(this, EventArgs.Empty);
+        }
+    }
+
+    protected void OnDeleted() {
+        if (this.Deleted != null) {
+            this.Deleted(this, EventArgs.Empty);
+        }
     }
 }
