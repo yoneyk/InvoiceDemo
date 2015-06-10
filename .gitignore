@@ -109,3 +109,5 @@ UpgradeLog*.XML
 *.DotSettings
 # JetBrains IDE files
 .idea
+
+src/*/node_modules/

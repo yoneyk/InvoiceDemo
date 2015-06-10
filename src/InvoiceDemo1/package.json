@@ -1,0 +1,13 @@
+{
+  "name": "InvoiceDemo1",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^2.2.1",
+    "supertest": "^0.15.0"
+  },
+  "scripts": {
+    "test": "mocha"
+   }
+}
