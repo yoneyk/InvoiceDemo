@@ -1,0 +1,50 @@
+﻿<!-- Create document template, which is to be bound to the JSON view-model -->
+<template>
+    <style>
+    .invoicedemo {
+        display: flex;
+    }
+
+    .invoicedemo section {
+        flex: 1 1 auto;
+        border: 1px solid rgb(226, 226, 226);
+        background: #FCFCFC;
+        border-radius: 5px;
+        padding: 10px 20px 20px 20px;
+        margin: 10px;
+    }
+
+    .invoicedemo section.list {
+        flex: 0 1 auto;
+    }
+    </style>
+    
+    <ul class="invoicedemo menu">
+        <li><a href="/invoicedemo">Home</a></li>
+        <li><a href="/invoicedemo/new-invoice">New Invoice</a></li>
+    </ul>
+
+    <section class="invoicedemo panes">
+        <section class="invoicedemo list">
+        <!-- start left pane of the UI -->
+            <template bind="{{RecentInvoices}}">
+                <template is="imported-template" content="{{Html}}">
+                </template>
+            </template> 
+        <!-- end left pane of the UI -->
+        </section>
+
+        <section class="invoicedemo invoice">
+        <!-- start right pane of the UI -->
+            <template bind="{{FocusedInvoice}}">
+                <template if="{{Html}}">
+                    <template is="imported-template" content="{{Html}}"></template>
+                </template>
+                <template if="{{!Html}}">
+                    <h1>Welcome to the InvoiceDemo</h1>
+                </template>
+            </template>
+        <!-- end right pane of the UI -->
+        </section>
+    </section>
+</template>

@@ -1,0 +1,205 @@
+.invoicedemo.menu {
+    display: block;
+    list-style-type: none;
+    padding: 0 0 0 40px;
+    margin: 0;
+    background-color: #4479BA;
+    border-bottom: 1px solid #C0C0C0;
+}
+
+.invoicedemo.menu li {
+    display: inline-block;
+    padding: 10px 20px 10px 0;
+}
+
+.invoicedemo.menu li a {
+    text-decoration: none;
+    color: white;
+}
+
+.invoicedemo.menu li a:hover {
+    text-decoration: underline;
+}
+
+.invoicedemo.panes {
+    display: flex;
+    padding: 10px;
+}
+
+.invoicedemo.panes section {
+    flex: 1 1 auto;
+    border: 1px solid rgb(226, 226, 226);
+    background: #FCFCFC;
+    border-radius: 5px;
+    padding: 10px 20px 20px 20px;
+    margin: 10px;
+}
+
+.invoicedemo.panes section.list {
+    flex: 1 0 auto;
+    width: 225px;
+}
+
+.invoicedemo.panes section.invoice {
+    flex: 4 0 auto;
+    width: 450px;
+}
+
+.invoicedemo.panes section.invoice .invoice-item-cell {
+    width: 20%;
+}
+
+.invoicedemo.panes section.invoice .invoice-item-cell:first-child {
+    width: 40%;
+}
+
+.invoicedemo input,
+.invoicedemo select,
+.invoicedemo textarea,
+.invoicedemo button {
+    font-family: inherit;
+}
+
+.invoicedemo input {
+    font-size: 100%;
+}
+
+/* Header */
+.invoicedemo h3 {
+    margin: 0px 0px 10px 0px;
+    padding: 0px;
+    font-size: 24px;
+    line-height: 40px;
+    color: black;
+}
+
+.invoicedemo .subtitle {
+    margin: 10px 0px 20px 0px;
+}
+
+.invoicedemo .subtitle label {
+    display: block;
+    margin-bottom: 3px;
+}
+
+.invoicedemo .subtitle input {
+    margin-top: 3px;
+    padding: 6px 10px 6px 10px;
+    border: 1px solid #cccccc;
+}
+
+.invoicedemo .invoice-items {
+    display: table;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.invoicedemo .invoice-items-body {
+    display: table-row-group;
+}
+
+.invoicedemo .invoice-items-head {
+    display: table-header-group;
+}
+
+.invoicedemo .invoice-items-head .invoice-item-cell,
+.invoicedemo .invoice-items-foot .invoice-item-cell:last-child {
+    border-width: 1px 1px 1px 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #cccccc;
+    color: #000000;
+    background-color: #eeeeee;
+    font-weight: bold;
+    text-align: center;
+}
+
+.invoicedemo .invoice-items-foot {
+    display: table-footer-group;
+}
+
+.invoicedemo .invoice-item {
+    display: table-row;
+}
+
+.invoicedemo .invoice-item-cell {
+    display: table-cell;
+    border-width: 1px;
+    padding: 0px;
+    margin: 0px;
+    border-style: solid;
+    border-color: #cccccc;
+    background-color: #ffffff;
+}
+
+.invoicedemo .invoice-items-head .invoice-item-cell:first-child {
+    text-align: left;
+    padding-left: 10px;
+}
+
+.invoicedemo .invoice-items-head .invoice-item-cell:last-child,
+.invoicedemo .invoice-items-foot .invoice-item-cell:last-child {
+    text-align: right;
+    padding-right: 10px;
+}
+
+.invoicedemo .invoice-item-cell input {
+    margin: 0px;
+    padding: 8px 10px 8px 10px;
+    border-width: 0px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.invoicedemo .invoice-item-cell input[type=number],
+.invoicedemo .invoice-item-cell input.number {
+    text-align: right;
+    /*padding-right: 0px;*/
+}
+
+.invoicedemo .invoice-item-cell.readonlycell {
+    padding: 6px 10px 6px 10px;
+}
+
+.invoicedemo .invoice-item-cell.alignright {
+    text-align: right;
+}
+
+.invoicedemo .invoice-items-foot .invoice-item-cell {
+    border-left-width: 0;
+    border-bottom-width: 0;
+    border-right-width: 0;
+    background-color: transparent;
+}
+
+.invoicedemo button {
+    margin: 0px 4px 6px 0;
+    padding: 8px 15px 8px 15px;
+    background: #4479BA;
+    color: #FFF;
+    border: 0px;
+}
+
+.invoicedemo button:hover {
+    cursor: pointer;
+}
+
+.invoicedemo .invoice-item-cell a:link {
+    text-align: center;
+    color: #3d85b4;
+    text-decoration: underline;
+    padding: 6px 10px 6px 10px;
+}
+
+.invoicedemo .invoice-item-cell a:visited {
+    color: #3d85b4;
+    text-decoration: underline;
+}
+
+.invoicedemo .invoice-item-cell a:active,
+.invoicedemo .invoice-item-cell a:hover {
+    color: #59a0c3;
+    text-decoration: underline;
+}

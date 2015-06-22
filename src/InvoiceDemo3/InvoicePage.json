@@ -1,0 +1,17 @@
+{
+  "Html": "",
+  "InvoiceNo": 0,
+  "Name$": "",
+  "Total": 0.0,
+  "Items": [{
+    "Description$": "", 
+    "Quantity$": 0, 
+    "Price$": 0.0,
+    "Total": 0.0
+  }],
+  "AddRow$": 0,
+  "Save$": 0,
+  "Cancel$": 0,
+  "Delete$": 0,
+  "RedirectUrl$": ""
+}

@@ -1,0 +1,28 @@
+﻿<link rel="stylesheet" href="/InvoiceDemo/style.css">
+<link rel="import" href="/sys/puppet-redirect/src/puppet-redirect.html">
+
+<template>
+    <h3>Invoices</h3>
+
+    <div class="invoice-items">
+        <div class="invoice-items-head">
+            <div class="invoice-item-cell">#</div>
+            <div class="invoice-item-cell">Name</div>
+            <div class="invoice-item-cell">Total</div>
+        </div>
+
+        <div class="invoice-items-body">
+        <template repeat="{{ Invoices }}">
+            <!-- 
+            Iterate over Invoices array elements to render the list of invoices
+            We don't use <table><tr><td> because <template repeat> has problems in native table in IE11 as of Polymer 0.5 combined with <template is="imported-template">
+            -->
+            <div class="invoice-item">
+                <div class="invoice-item-cell readonlycell"><a href="/invoicedemo/invoices/{{InvoiceNo}}">{{InvoiceNo}}</a></div>
+                <div class="invoice-item-cell readonlycell">{{Name}}</div>
+                <div class="invoice-item-cell readonlycell alignright">{{Total}}</div>
+            </div>
+        </template>
+        </div>
+    </div>
+</template>
