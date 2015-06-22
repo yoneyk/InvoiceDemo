@@ -1,11 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceDemo", "src\InvoiceDemo3\InvoiceDemo.csproj", "{8275CB80-E3B9-4336-B4E5-D8BBB5F11C6F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplified", "..\Simplified\Simplified.csproj", "{26DF60EA-3A8C-455C-8A0C-2FD39703FC89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +13,6 @@ Global
 		{8275CB80-E3B9-4336-B4E5-D8BBB5F11C6F}.Debug|x64.Build.0 = Debug|x64
 		{8275CB80-E3B9-4336-B4E5-D8BBB5F11C6F}.Release|x64.ActiveCfg = Release|x64
 		{8275CB80-E3B9-4336-B4E5-D8BBB5F11C6F}.Release|x64.Build.0 = Release|x64
-		{26DF60EA-3A8C-455C-8A0C-2FD39703FC89}.Debug|x64.ActiveCfg = Debug|x64
-		{26DF60EA-3A8C-455C-8A0C-2FD39703FC89}.Debug|x64.Build.0 = Debug|x64
-		{26DF60EA-3A8C-455C-8A0C-2FD39703FC89}.Release|x64.ActiveCfg = Release|x64
-		{26DF60EA-3A8C-455C-8A0C-2FD39703FC89}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
