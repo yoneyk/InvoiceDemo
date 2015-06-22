@@ -5,20 +5,21 @@ class Program {
     static void Main() {
         Handle.GET("/invoicedemo", () => {
             MasterPage master;
+
             if (Session.Current != null && Session.Current.Data != null) {
                 master = (MasterPage)Session.Current.Data;
             } else {
-                master = new MasterPage() {
-                    Html = "/InvoiceDemo/LauncherWrapperPage.html"
-                };
+                master = new MasterPage();
+
                 if (Session.Current != null) {
+                    master.Html = "/InvoiceDemo/LauncherWrapperPage.html";
                     master.Session = Session.Current;
-                }
-                else {
+                } else {
                     master.Session = new Session(SessionOptions.PatchVersioning);
                 }
+
                 master.RecentInvoices = new InvoicesPage() {
-                    Html = "/InvoicesPage.html"
+                    Html = "/InvoiceDemo/InvoicesPage.html"
                 };
             }
 

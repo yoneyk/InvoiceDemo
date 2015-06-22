@@ -184,6 +184,7 @@
 
 .invoicedemo button:hover {
     cursor: pointer;
+    background-color:#5588c7;
 }
 
 .invoicedemo .invoice-item-cell a:link {
@@ -202,4 +203,13 @@
 .invoicedemo .invoice-item-cell a:hover {
     color: #59a0c3;
     text-decoration: underline;
+}
+
+.invoicedemo section.list {
+    flex: 0 1 auto;
+    flex-direction: column;
+}
+
+.invoicedemo section.invoice {
+    flex-direction: column;
 }
