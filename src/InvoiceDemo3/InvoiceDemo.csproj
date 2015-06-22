@@ -106,6 +106,13 @@
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Simplified\Simplified.csproj">
+      <Project>{26df60ea-3a8c-455c-8a0c-2fd39703fc89}</Project>
+      <Name>Simplified</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(StarcounterBin)\Starcounter.MsBuild.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

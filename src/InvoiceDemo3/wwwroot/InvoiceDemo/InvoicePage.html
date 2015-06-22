@@ -11,7 +11,16 @@
     <div class="subtitle">
         <label>Customer name</label>
         <!-- Display Name$ and bind it for editing -->
-        <input type="text" value="{{Name$}}"/>
+        <input type="text" value="{{Name$}}" onblur="this.templateInstance.model.ClearFoundSomebodies$++" placeholder="Type to find" />
+        <template if="{{FoundSomebodies.length}}">
+            <ul class="autocomplete">
+                <template repeat="{{FoundSomebodies}}">
+                    <li>
+                        <a onmousedown="this.templateInstance.model.Choose$++" href="javascript:">{{Name}}</a>
+                    </li>
+                </template>
+            </ul>
+        </template>
     </div>
 
     <div class="invoice-items">
@@ -30,7 +39,18 @@
             -->
             <div class="invoice-item">
                 <!-- Display item properties and bind them for editing -->
-                <div class="invoice-item-cell"><input type="text" value="{{item.Description$}}"/></div>
+                <div class="invoice-item-cell">
+                    <input type="text" value="{{item.Description$}}" onblur="this.templateInstance.model.item.ClearFoundProducts$++" placeholder="Type to find" />
+                    <template if="{{item.FoundProducts.length}}">
+                        <ul class="autocomplete">
+                            <template repeat="{{item.FoundProducts}}">
+                                <li>
+                                    <a onmousedown="this.templateInstance.model.Choose$++" href="javascript:">{{Name}}</a>
+                                </li>
+                            </template>
+                        </ul>
+                    </template>
+                </div>
                 <div class="invoice-item-cell"><input class="number" type="text" value="{{item.Quantity$}}"/></div>
                 <div class="invoice-item-cell"><input class="number" type="text" value="{{item.Price$}}"/></div>
                 <!-- Display readonly Total property -->
