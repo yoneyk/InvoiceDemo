@@ -21,6 +21,7 @@
             "FoundProducts": [
                 {
                     "Name": "",
+                    "Price": 0.0,
                     "Choose$": 1
                 }
             ]

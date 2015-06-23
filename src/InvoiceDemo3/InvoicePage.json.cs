@@ -100,6 +100,7 @@ partial class InvoicePage : Page, IBound<Invoice> {
     public partial class InvoicePageItemsFoundProducts : Json, IBound<Simplified.Ring3.Product> {
         void Handle(Input.Choose action) {
             this.ParentPage.Description = this.Name;
+            this.ParentPage.Price = this.Price;
             this.ParentPage.FoundProducts.Clear();
         }
 
