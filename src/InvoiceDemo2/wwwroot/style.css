@@ -192,10 +192,10 @@ body {
 
 .invoicedemo button:hover {
     cursor: pointer;
+    background-color:#5588c7;
 }
 
 .invoicedemo .invoice-item-cell a:link {
-    text-align: center;
     color: #3d85b4;
     text-decoration: underline;
     padding: 6px 10px 6px 10px;
