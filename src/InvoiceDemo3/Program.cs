@@ -15,6 +15,7 @@ class Program {
                     master.Html = "/InvoiceDemo/LauncherWrapperPage.html";
                     master.Session = Session.Current;
                 } else {
+                    master.Html = "/InvoiceDemo/MasterPage.html";
                     master.Session = new Session(SessionOptions.PatchVersioning);
                 }
 

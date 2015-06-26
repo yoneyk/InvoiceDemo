@@ -45,11 +45,13 @@
         </div>
     </div>
 
-    <!-- Trigger button handlers on click -->
-    <button onclick="getModel(this).AddRow$++">Add row</button>
-    <button onclick="getModel(this).Save$++">Save changes</button>
-    <button onclick="getModel(this).Cancel$++">Cancel changes</button>
-    <button onclick="getModel(this).Delete$++">Delete invoice</button>
+    <div>
+        <!-- Trigger button handlers on click -->
+        <button onclick="getModel(this).AddRow$++">Add row</button>
+        <button onclick="getModel(this).Save$++">Save changes</button>
+        <button onclick="getModel(this).Cancel$++">Cancel changes</button>
+        <button onclick="getModel(this).Delete$++">Delete invoice</button>
+    </div>
 
     <link is="puppet-redirect" history url="{{RedirectUrl$}}">
 </template>
