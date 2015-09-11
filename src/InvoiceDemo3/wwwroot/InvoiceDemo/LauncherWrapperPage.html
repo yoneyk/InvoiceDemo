@@ -21,9 +21,7 @@
         <li><a href="/invoicedemo/new-invoice">New Invoice</a></li>
     </ul>
 
-    <template is="dom-bind" id="InvoiceLauncherWrapperPage">
-        <dom-bind-notifier ref="InvoiceLauncherWrapperPage"
-            observed-object="{{model}}" path="model" deep></dom-bind-notifier>
+    <template is="dom-bind">
         <section class="invoicedemo panes">
             <section class="invoicedemo list">
             <!-- start left pane of the UI -->
@@ -44,5 +42,6 @@
             <!-- end right pane of the UI -->
             </section>
         </section>
+        <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
     </template>
 </template>

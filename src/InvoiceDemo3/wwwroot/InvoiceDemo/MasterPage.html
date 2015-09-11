@@ -44,7 +44,6 @@
 
 <!-- Create document template, which is to be bound to the JSON view-model -->
 <template id="root" is="dom-bind">
-  <dom-bind-notifier ref="root" observed-object="{{model}}" path="model" deep></dom-bind-notifier>
     <ul class="invoicedemo menu">
         <li><a href="/invoicedemo">Home</a></li>
         <li><a href="/invoicedemo/new-invoice">New Invoice</a></li>
@@ -68,10 +67,11 @@
         <!-- end right pane of the UI -->
         </section>
     </section>
+    <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
 </template>
+<puppet-client ref="root"></puppet-client>
 
 <!-- Plug in client-server sync -->
-<puppet-client ref="root"></puppet-client>
 <starcounter-debug-aid></starcounter-debug-aid>
 </body>
 </html>

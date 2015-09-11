@@ -19,7 +19,6 @@
 
 <!-- Create document template, which is to be bound to the JSON view-model -->
 <template is="dom-bind" id="root">
-  <dom-bind-notifier ref="root" observed-object="{{model}}" path="model" deep></dom-bind-notifier>
     <ul class="invoicedemo menu">
         <li><a href="/invoicedemo">Home</a></li>
         <li><a href="/invoicedemo/new-invoice">New Invoice</a></li>
@@ -46,6 +45,7 @@
         <!-- end right pane of the UI -->
         </section>
     </section>
+    <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
 </template>
 
 <!-- Plug in client-server sync -->

@@ -1,6 +1,5 @@
 <template>
-    <template is="dom-bind" id="InvoicePage">
-      <dom-bind-notifier ref="InvoicePage" observed-object="{{model}}" path="model" deep></dom-bind-notifier>
+    <template is="dom-bind">
         <template is="dom-if" if="{{model.InvoiceNo}}">
             <h3>Invoice #<span>{{model.InvoiceNo}}</span></h3>
         </template>
@@ -56,5 +55,6 @@
         </div>
 
         <link is="puppet-redirect" history url="{{model.RedirectUrl$}}">
+        <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
     </template>
 </template>

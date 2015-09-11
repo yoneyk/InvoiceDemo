@@ -9,7 +9,7 @@
     <link rel="import" href="/sys/starcounter.html">
 
     <!-- starcounter-debug-aid gives you a nice debug window when pressed Ctrl+` -->
-    <link rel="import" href="/sys/starcounter-debug-aid/src/starcounter-debug-aid.html">
+    <!-- <link rel="import" href="/sys/starcounter-debug-aid/src/starcounter-debug-aid.html"> -->
     <link rel="import" href="/sys/dom-bind-notifier/dom-bind-notifier.html">
     <!-- load stylesheet -->
     <link rel="stylesheet" href="/style.css">
@@ -18,7 +18,6 @@
 <body>
 <!-- Create document template, which is to be bound to the JSON view-model -->
 <template is="dom-bind" id="root">
-  <dom-bind-notifier ref="root" observed-object="{{model}}" path="model" deep></dom-bind-notifier>
 <section class="invoicedemo panes">
     <section class="invoicedemo invoice">
 
@@ -75,6 +74,7 @@
 
     </section>
 </section>
+<dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
 </template>
 
 <!-- Plug in client-server sync -->

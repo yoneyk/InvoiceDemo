@@ -2,8 +2,7 @@
 <link rel="import" src="../polymer/polymer.html">
 
 <template>
-    <template is="dom-bind" id="InvoicePage">
-        <dom-bind-notifier ref="InvoicePage" observed-object="{{model}}" path="model" deep></dom-bind-notifier>
+    <template is="dom-bind">
 
         <template is="dom-if" if="{{model.InvoiceNo}}" restamp>
             <h3>Invoice #<span>{{model.InvoiceNo}}</span></h3>
@@ -80,16 +79,17 @@
         </div>
 
         <link is="puppet-redirect" history url="{{model.RedirectUrl$}}">
+        <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
     </template>
     <script>
         (function(){
             var polymerAutoBinding = document.currentScript.previousElementSibling;
             polymerAutoBinding.clearFoundSomebodies = function(){
                 polymerAutoBinding.model.ClearFoundSomebodies$++;
-            }
+            };
             polymerAutoBinding.clearFoundProducts = function(event){
                 polymerAutoBinding.model.Items[event.target.itemIndex].ClearFoundProducts$++;
-            }
-        }())
+            };
+        }());
     </script>
 </template>

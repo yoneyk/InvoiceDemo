@@ -4,8 +4,7 @@
 
 <template>
     <h3>Invoices</h3>
-    <template is="dom-bind" id="InvoicesPage">
-        <dom-bind-notifier ref="InvoicesPage" observed-object="{{model}}" path="model" deep></dom-bind-notifier>
+    <template is="dom-bind">
 
         <div class="invoice-items">
             <div class="invoice-items-head">
@@ -28,10 +27,11 @@
             </template>
             </div>
         </div>
+        <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
     </template>
     <script>
         document.currentScript.previousElementSibling.concat = function(a, b){
             return a + b;
-        }
+        };
     </script>
 </template>
