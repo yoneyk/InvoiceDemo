@@ -18,7 +18,5 @@ class Program {
             }
             return page;
         });
-
-        PolyjuiceNamespace.Polyjuice.Map("/invoicedemo", "/");
     }
 }
