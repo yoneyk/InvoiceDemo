@@ -84,8 +84,8 @@ class Program {
             return new Page() { Html = "/InvoiceDemo/AppMenuPage.html" };
         });
 
-        PolyjuiceNamespace.Polyjuice.Map("/invoicedemo/menu", "/polyjuice/menu");
-        PolyjuiceNamespace.Polyjuice.Map("/invoicedemo/app-name", "/polyjuice/app-name");
-        PolyjuiceNamespace.Polyjuice.Map("/invoicedemo/app-icon", "/polyjuice/app-icon");
+        UriMapping.Map("/invoicedemo/menu", UriMapping.MappingUriPrefix + "/menu");
+        UriMapping.Map("/invoicedemo/app-name", UriMapping.MappingUriPrefix + "/app-name");
+        UriMapping.Map("/invoicedemo/app-icon", UriMapping.MappingUriPrefix + "/app-icon");
     }
 }
