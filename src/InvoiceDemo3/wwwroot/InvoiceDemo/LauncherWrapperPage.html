@@ -1,4 +1,5 @@
-﻿<!-- Create document template, which is to be bound to the JSON view-model -->
+<link rel="import" src="../polymer/polymer.html">
+<!-- Create document template, which is to be bound to the JSON view-model -->
 <template>
     <style>
         .invoicedemo {
@@ -14,32 +15,33 @@
             margin: 10px;
         }
     </style>
-    
+
     <ul class="invoicedemo menu">
         <li><a href="/invoicedemo">Home</a></li>
         <li><a href="/invoicedemo/new-invoice">New Invoice</a></li>
     </ul>
 
-    <section class="invoicedemo panes">
-        <section class="invoicedemo list">
-        <!-- start left pane of the UI -->
-            <template bind="{{RecentInvoices}}">
-                <template is="imported-template" content="{{Html}}"></template>
-            </template> 
-        <!-- end left pane of the UI -->
-        </section>
+    <template is="dom-bind">
+        <section class="invoicedemo panes">
+            <section class="invoicedemo list">
+            <!-- start left pane of the UI -->
+                <template is="imported-template"
+                    content$="{{model.RecentInvoices.Html}}" model="{{model.RecentInvoices}}"></template>
+            <!-- end left pane of the UI -->
+            </section>
 
-        <section class="invoicedemo invoice">
-        <!-- start right pane of the UI -->
-            <template bind="{{FocusedInvoice}}">
-                <template if="{{Html}}">
-                    <template is="imported-template" content="{{Html}}"></template>
+            <section class="invoicedemo invoice">
+            <!-- start right pane of the UI -->
+                <template is="dom-if" if="{{model.FocusedInvoice.Html}}"  restamp>
+                    <template is="imported-template"
+                        content$="{{model.FocusedInvoice.Html}}" model="{{model.FocusedInvoice}}"></template>
                 </template>
-                <template if="{{!Html}}">
+                <template is="dom-if" if="{{!model.FocusedInvoice.Html}}"  restamp>
                     <h1>Welcome to the InvoiceDemo</h1>
                 </template>
-            </template>
-        <!-- end right pane of the UI -->
+            <!-- end right pane of the UI -->
+            </section>
         </section>
-    </section>
+        <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
+    </template>
 </template>

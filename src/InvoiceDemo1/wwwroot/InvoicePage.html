@@ -7,29 +7,32 @@
     <script src="/sys/webcomponentsjs/webcomponents.js"></script>
     <!-- import Web Components needed for client-server sync -->
     <link rel="import" href="/sys/starcounter.html">
+
     <!-- starcounter-debug-aid gives you a nice debug window when pressed Ctrl+` -->
     <link rel="import" href="/sys/starcounter-debug-aid/src/starcounter-debug-aid.html">
+    <!-- dom-bind-notifier makes Polymer's dom-bind observe changes -->'
+    <link rel="import" href="/sys/dom-bind-notifier/dom-bind-notifier.html">
     <!-- load stylesheet -->
     <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
 <!-- Create document template, which is to be bound to the JSON view-model -->
-<template id="root" bind>
+<template is="dom-bind" id="root">
 <section class="invoicedemo panes">
     <section class="invoicedemo invoice">
 
-    <template if="{{InvoiceNo}}">
-        <h3>Invoice #{{InvoiceNo}}</h3>
+    <template is="dom-if" if="{{model.InvoiceNo}}">
+        <h3>Invoice #<span>{{model.InvoiceNo}}</span></h3>
     </template>
-    <template if="{{!InvoiceNo}}">
+    <template is="dom-if" if="{{!model.InvoiceNo}}">
         <h3>Add new invoice</h3>
     </template>
 
     <div class="subtitle">
         <label>Customer name</label>
-        <!-- Display Name$ and bind it for editing -->
-        <input type="text" value="{{Name$}}"/>
+        <!-- Display model.Name$ and bind it for editing -->
+        <input type="text" value="{{model.Name$::input}}"/>
     </div>
 
     <div class="invoice-items">
@@ -41,16 +44,16 @@
         </div>
 
         <div class="invoice-items-body">
-        <template repeat="{{ item in Items }}">
-            <!-- 
-            Iterate over Invoice.Items array elements to render the invoice rows 
+        <template is="dom-repeat" items="{{model.Items}}">
+            <!--
+            Iterate over Invoice.Items array elements to render the invoice rows
             We don't use <table><tr><td> because <template repeat> has problems in native table in IE11 as of Polymer 0.5 combined with <template is="imported-template">
             -->
             <div class="invoice-item">
                 <!-- Display item properties and bind them for editing -->
-                <div class="invoice-item-cell"><input type="text" value="{{item.Description$}}"/></div>
-                <div class="invoice-item-cell"><input class="number" type="text" value="{{item.Quantity$}}"/></div>
-                <div class="invoice-item-cell"><input class="number" type="text" value="{{item.Price$}}"/></div>
+                <div class="invoice-item-cell"><input type="text" value="{{item.Description$::input}}"/></div>
+                <div class="invoice-item-cell"><input class="number" type="text" value="{{item.Quantity$::input}}"/></div>
+                <div class="invoice-item-cell"><input class="number" type="text" value="{{item.Price$::input}}"/></div>
                 <!-- Display readonly Total property -->
                 <div class="invoice-item-cell readonlycell alignright">{{item.Total}}</div>
             </div>
@@ -61,17 +64,18 @@
             <div class="invoice-item-cell"></div>
             <div class="invoice-item-cell"></div>
             <div class="invoice-item-cell"></div>
-            <div class="invoice-item-cell">{{Total}}</div>
+            <div class="invoice-item-cell">{{model.Total}}</div>
         </div>
     </div>
 
     <!-- Trigger button handlers on click -->
-    <button onclick="getModel(this).AddRow$++">Add row</button>
-    <button onclick="getModel(this).Save$++">Save changes</button>
-    <button onclick="getModel(this).Cancel$++">Cancel changes</button>
+    <button value="{{model.AddRow$::click}}"  onclick="++this.value">Add row</button>
+    <button value="{{model.Save$::click}}" onclick="++this.value">Save changes</button>
+    <button value="{{model.Cancel$::click}}"  onclick="++this.value">Cancel changes</button>
 
     </section>
 </section>
+<dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
 </template>
 
 <!-- Plug in client-server sync -->

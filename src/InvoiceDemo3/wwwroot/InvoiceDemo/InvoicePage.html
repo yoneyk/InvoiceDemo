@@ -1,79 +1,95 @@
 <link rel="stylesheet" href="/InvoiceDemo/style.css">
+<link rel="import" src="../polymer/polymer.html">
 
 <template>
-    <template if="{{InvoiceNo}}">
-        <h3>Invoice #{{InvoiceNo}}</h3>
-    </template>
-    <template if="{{!InvoiceNo}}">
-        <h3>Add new invoice</h3>
-    </template>
+    <template is="dom-bind">
 
-    <div class="subtitle">
-        <label>Customer name</label>
-        <!-- Display Name$ and bind it for editing -->
-        <input type="text" value="{{Name$}}" onblur="this.templateInstance.model.ClearFoundSomebodies$++" placeholder="Type to find" />
-        <template if="{{FoundSomebodies.length}}">
-            <ul class="autocomplete">
-                <template repeat="{{FoundSomebodies}}">
-                    <li>
-                        <a onmousedown="this.templateInstance.model.Choose$++" href="javascript:">{{Name}}</a>
-                    </li>
-                </template>
-            </ul>
+        <template is="dom-if" if="{{model.InvoiceNo}}" restamp>
+            <h3>Invoice #<span>{{model.InvoiceNo}}</span></h3>
         </template>
-    </div>
+        <template is="dom-if" if="{{!model.InvoiceNo}}" restamp>
+            <h3>Add new invoice</h3>
+        </template>
 
-    <div class="invoice-items">
-        <div class="invoice-items-head">
-            <div class="invoice-item-cell">Description</div>
-            <div class="invoice-item-cell">Quantity</div>
-            <div class="invoice-item-cell">Price</div>
-            <div class="invoice-item-cell">Total</div>
-        </div>
-
-        <div class="invoice-items-body">
-        <template repeat="{{ item in Items }}">
-            <!-- 
-            Iterate over Invoice.Items array elements to render the invoice rows 
-            We don't use <table><tr><td> because <template repeat> has problems in native table in IE11 as of Polymer 0.5 combined with <template is="imported-template">
-            -->
-            <div class="invoice-item">
-                <!-- Display item properties and bind them for editing -->
-                <div class="invoice-item-cell">
-                    <input type="text" value="{{item.Description$}}" onblur="this.templateInstance.model.item.ClearFoundProducts$++" placeholder="Type to find" />
-                    <template if="{{item.FoundProducts.length}}">
-                        <ul class="autocomplete">
-                            <template repeat="{{item.FoundProducts}}">
-                                <li>
-                                    <a onmousedown="this.templateInstance.model.Choose$++" href="javascript:">{{Name}}</a>
-                                </li>
-                            </template>
-                        </ul>
+        <div class="subtitle">
+            <label>Customer name</label>
+            <!-- Display Name$ and bind it for editing -->
+            <input type="text" value="{{model.Name$::input}}" on-blur="clearFoundSomebodies" placeholder="Type to find" />
+            <template is="dom-if" if="{{model.FoundSomebodies.length}}" restamp>
+                <ul class="autocomplete">
+                    <template is="dom-repeat" items="{{model.FoundSomebodies}}">
+                        <li>
+                            <a value="{{item.Choose$::mousedown}}" onmousedown="++this.value" href="javascript:">{{item.Name}}</a>
+                        </li>
                     </template>
-                </div>
-                <div class="invoice-item-cell"><input class="number" type="text" value="{{item.Quantity$}}"/></div>
-                <div class="invoice-item-cell"><input class="number" type="text" value="{{item.Price$}}"/></div>
-                <!-- Display readonly Total property -->
-                <div class="invoice-item-cell readonlycell alignright">{{item.Total}}</div>
+                </ul>
+            </template>
+        </div>
+
+        <div class="invoice-items">
+            <div class="invoice-items-head">
+                <div class="invoice-item-cell">Description</div>
+                <div class="invoice-item-cell">Quantity</div>
+                <div class="invoice-item-cell">Price</div>
+                <div class="invoice-item-cell">Total</div>
             </div>
-        </template>
+
+            <div class="invoice-items-body">
+            <template is="dom-repeat" items="{{model.Items}}">
+                <!--
+                Iterate over Invoice.Items array elements to render the invoice rows
+                We don't use <table><tr><td> because <template repeat> has problems in native table in IE11 as of Polymer 0.5 combined with <template is="imported-template">
+                -->
+                <div class="invoice-item">
+                    <!-- Display item properties and bind them for editing -->
+                    <div class="invoice-item-cell">
+                        <input type="text" value="{{item.Description$::input}}" on-blur="clearFoundProducts" item-index="{{index}}" placeholder="Type to find" />
+                        <template is="dom-if" if="{{item.FoundProducts.length}}" restamp>
+                            <ul class="autocomplete">
+                                <template is="dom-repeat" items="{{item.FoundProducts}}">
+                                    <li>
+                                        <a value="{{item.Choose$::mousedown}}" onmousedown="++this.value" href="javascript:">{{item.Name}}</a>
+                                    </li>
+                                </template>
+                            </ul>
+                        </template>
+                    </div>
+                    <div class="invoice-item-cell"><input class="number" type="text" value="{{item.Quantity$::input}}"/></div>
+                    <div class="invoice-item-cell"><input class="number" type="text" value="{{item.Price$::input}}"/></div>
+                    <!-- Display readonly Total property -->
+                    <div class="invoice-item-cell readonlycell alignright">{{item.Total}}</div>
+                </div>
+            </template>
+            </div>
+
+            <div class="invoice-items-foot">
+                <div class="invoice-item-cell"></div>
+                <div class="invoice-item-cell"></div>
+                <div class="invoice-item-cell"></div>
+                <div class="invoice-item-cell">{{model.Total}}</div>
+            </div>
         </div>
 
-        <div class="invoice-items-foot">
-            <div class="invoice-item-cell"></div>
-            <div class="invoice-item-cell"></div>
-            <div class="invoice-item-cell"></div>
-            <div class="invoice-item-cell">{{Total}}</div>
+        <div>
+            <!-- Trigger button handlers on click -->
+            <button value="{{model.AddRow$::click}}" onclick="++this.value">Add row</button>
+            <button value="{{model.Save$::click}}" onclick="++this.value">Save changes</button>
+            <button value="{{model.Cancel$::click}}" onclick="++this.value">Cancel changes</button>
+            <button value="{{model.Delete$::click}}" onclick="++this.value">Delete invoice</button>
         </div>
-    </div>
 
-    <div>
-        <!-- Trigger button handlers on click -->
-        <button onclick="getModel(this).AddRow$++">Add row</button>
-        <button onclick="getModel(this).Save$++">Save changes</button>
-        <button onclick="getModel(this).Cancel$++">Cancel changes</button>
-        <button onclick="getModel(this).Delete$++">Delete invoice</button>
-    </div>
-
-    <link is="puppet-redirect" history url="{{RedirectUrl$}}">
+        <link is="puppet-redirect" history url="{{model.RedirectUrl$}}">
+        <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
+    </template>
+    <script>
+        (function(){
+            var polymerAutoBinding = document.currentScript.previousElementSibling;
+            polymerAutoBinding.clearFoundSomebodies = function(){
+                polymerAutoBinding.model.ClearFoundSomebodies$++;
+            };
+            polymerAutoBinding.clearFoundProducts = function(event){
+                polymerAutoBinding.model.Items[event.target.itemIndex].ClearFoundProducts$++;
+            };
+        }());
+    </script>
 </template>
