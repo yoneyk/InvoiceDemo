@@ -1,4 +1,6 @@
+<!-- Every node from this template, will be stamped, with view-model attached to `model` property -->
 <template>
+    <!-- Consume this model in Polymer's autobinding element -->
     <template is="dom-bind">
         <template is="dom-if" if="{{model.InvoiceNo}}">
             <h3>Invoice #<span>{{model.InvoiceNo}}</span></h3>

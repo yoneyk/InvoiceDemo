@@ -83,6 +83,7 @@
     </template>
     <script>
         (function(){
+            // Add helper methods to `dom-bind` to increment different values on different events
             var polymerAutoBinding = document.currentScript.previousElementSibling;
             polymerAutoBinding.clearFoundSomebodies = function(){
                 polymerAutoBinding.model.ClearFoundSomebodies$++;

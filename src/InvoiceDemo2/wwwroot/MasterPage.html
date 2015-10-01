@@ -18,7 +18,7 @@
 </head>
 <body>
 
-<!-- Create document template, which is to be bound to the JSON view-model -->
+<!-- Polymer's auto-binding element. Creates document template, which is to be bound to the JSON view-model -->
 <template is="dom-bind" id="root">
     <ul class="invoicedemo menu">
         <li><a href="/invoicedemo">Home</a></li>
@@ -28,16 +28,22 @@
     <section class="invoicedemo panes">
         <section class="invoicedemo list">
         <!-- start left pane of the UI -->
-            <!-- <template bind="{{RecentInvoices}}"> -->
-                <template is="imported-template" content$="{{model.RecentInvoices.Html}}" model="{{model.RecentInvoices}}">
-                </template>
-            <!-- </template> -->
+            <!--
+                Use Juicy/imported-template custom element to include HTML partial, and attach data model to it
+                @see http://starcounter.io/guides/web/more-on-partials/
+            -->
+            <template is="imported-template" content$="{{model.RecentInvoices.Html}}" model="{{model.RecentInvoices}}">
+            </template>
         <!-- end left pane of the UI -->
         </section>
 
         <section class="invoicedemo invoice">
         <!-- start right pane of the UI -->
             <template is="dom-if" if="{{model.FocusedInvoice.Html}}" restamp>
+                <!--
+                    Use Juicy/imported-template custom element to include HTML partial, and attach data model to it
+                    @see http://starcounter.io/guides/web/more-on-partials/
+                -->
                 <template is="imported-template" content$="{{model.FocusedInvoice.Html}}" model="{{model.FocusedInvoice}}"></template>
             </template>
             <template is="dom-if" if="{{!model.FocusedInvoice.Html}}" restamp>
@@ -46,6 +52,7 @@
         <!-- end right pane of the UI -->
         </section>
     </section>
+    <!-- Observe changes to given model, and notify Polymer's template -->
     <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
 </template>
 

@@ -10,22 +10,24 @@
 
     <!-- starcounter-debug-aid gives you a nice debug window when pressed Ctrl+` -->
     <link rel="import" href="/sys/starcounter-debug-aid/src/starcounter-debug-aid.html">
-    <!-- dom-bind-notifier makes Polymer's dom-bind observe changes -->'
+    <!-- Use Polymer's template binding system -->
+    <link rel="import" href="/sys/polymer/polymer.html">
+    <!-- dom-bind-notifier makes Polymer's dom-bind element observe changes automatically -->
     <link rel="import" href="/sys/dom-bind-notifier/dom-bind-notifier.html">
     <!-- load stylesheet -->
     <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
-<!-- Create document template, which is to be bound to the JSON view-model -->
-<template is="dom-bind" id="root">
+<!-- Polymer's auto-binding element. Creates document template, which is to be bound to the JSON view-model -->
+<template id="root" is="dom-bind">
 <section class="invoicedemo panes">
     <section class="invoicedemo invoice">
 
-    <template is="dom-if" if="{{model.InvoiceNo}}">
-        <h3>Invoice #<span>{{model.InvoiceNo}}</span></h3>
+    <template if="{{InvoiceNo}}" restamp>
+        <h3>Invoice #<span>{{InvoiceNo}}</span></h3>
     </template>
-    <template is="dom-if" if="{{!model.InvoiceNo}}">
+    <template if="{{!InvoiceNo}}" restamp>
         <h3>Add new invoice</h3>
     </template>
 
@@ -75,6 +77,7 @@
 
     </section>
 </section>
+<!-- Observe changes to given model, and notify Polymer's template -->
 <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
 </template>
 
