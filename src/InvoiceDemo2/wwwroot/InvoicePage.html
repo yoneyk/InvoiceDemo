@@ -56,7 +56,7 @@
             <button value="{{model.Delete$::click}}" onclick="++this.value">Delete invoice</button>
         </div>
 
-        <link is="puppet-redirect" history url="{{model.RedirectUrl$}}">
+        <link is="puppet-redirect" history url$="{{model.RedirectUrl$}}">
         <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
     </template>
 </template>
