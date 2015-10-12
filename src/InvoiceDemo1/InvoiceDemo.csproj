@@ -77,6 +77,18 @@
       <Generator>MsBuild:Compile</Generator>
     </TypedJSON>
   </ItemGroup>
+  <PropertyGroup>
+    <!-- If the tools for .Net 4.5 are not available (since they are separated from the 
+	     runtime for 4.5) we override the path to the framework to use to .NET 4.0
+		 to avoid compiler warnings when compiling on installations without VS installed.
+		 
+		 The override needs to be set before the targets files are imported and getting the 
+		 path to the tools needs to be called after setting build and platform configurations.
+	-->
+    <TargetFrameworkToolsPath>$([Microsoft.Build.Utilities.ToolLocationHelper]::GetPathToStandardLibraries(.NetFramework, $(TargetFrameworkVersion), $(TargetFrameworkProfile), $(PlatformTarget)))</TargetFrameworkToolsPath>
+    <DotNet40FrameworkPath Condition="'$(TargetFrameworkToolsPath)'==''">$([Microsoft.Build.Utilities.ToolLocationHelper]::GetPathToDotNetFramework(Microsoft.Build.Utilities.TargetDotNetFrameworkVersion.Version40))</DotNet40FrameworkPath>
+    <FrameworkPathOverride Condition="'$(TargetFrameworkToolsPath)'==''">$(DotNet40FrameworkPath)</FrameworkPathOverride>
+  </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(StarcounterBin)\Starcounter.MsBuild.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
