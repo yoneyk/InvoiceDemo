@@ -1,4 +1,6 @@
 {
     "name": "InvoiceDemo",
-    "description": "Create simple invoices"
+    "description": "Create simple invoices",
+    "html": "/InvoiceDemo/AppIconPage.html",
+    "url": "invoicedemo"
 }

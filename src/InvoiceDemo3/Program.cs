@@ -76,16 +76,11 @@ class Program {
             return new AppName();
         });
 
-        Handle.GET("/invoicedemo/app-icon", () => {
-            return new Page() { Html = "/InvoiceDemo/AppIconPage.html" };
-        });
-
         Handle.GET("/invoicedemo/menu", () => {
             return new Page() { Html = "/InvoiceDemo/AppMenuPage.html" };
         });
 
         UriMapping.Map("/invoicedemo/menu", UriMapping.MappingUriPrefix + "/menu");
         UriMapping.Map("/invoicedemo/app-name", UriMapping.MappingUriPrefix + "/app-name");
-        UriMapping.Map("/invoicedemo/app-icon", UriMapping.MappingUriPrefix + "/app-icon");
     }
 }
