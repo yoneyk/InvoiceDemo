@@ -20,7 +20,7 @@
                 We don't use <table><tr><td> because <template repeat> has problems in native table in IE11 as of Polymer 0.5 combined with <template is="imported-template">
                 -->
                 <div class="invoice-item">
-                    <div class="invoice-item-cell readonlycell"><a href="{{concat('/invoicedemo/invoices/',item.InvoiceNo)}}">{{item.InvoiceNo}}</a></div>
+                    <div class="invoice-item-cell readonlycell"><a href="{{item.Url}}">{{item.InvoiceNo}}</a></div>
                     <div class="invoice-item-cell readonlycell">{{item.Name}}</div>
                     <div class="invoice-item-cell readonlycell alignright">{{item.Total}}</div>
                 </div>
@@ -29,9 +29,4 @@
         </div>
         <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
     </template>
-    <script>
-        document.currentScript.previousElementSibling.concat = function(a, b){
-            return a + b;
-        };
-    </script>
 </template>
