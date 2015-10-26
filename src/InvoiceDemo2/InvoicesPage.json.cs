@@ -6,7 +6,7 @@ partial class InvoicesPage : Page {
     }
 
     [InvoicesPage_json.Invoices]
-    partial class InvoicesItemPage : Json, IBound<Invoice> {
+    partial class InvoicesItemPage {
         protected override void OnData() {
             base.OnData();
             this.Url = string.Format("/invoicedemo/invoices/{0}", this.InvoiceNo);
