@@ -14,7 +14,8 @@
         <div class="subtitle">
             <label>Customer name</label>
             <!-- Display Name$ and bind it for editing -->
-            <input type="text" value="{{model.Name$::input}}" on-blur="clearFoundSomebodies" placeholder="Type to find" />
+            <input type="text" value="{{model.Name$::input}}" placeholder="Type to find" 
+                   clear="{{model.ClearFoundSomebodies$::blur}}" onblur="++this.clear;" />
             <template is="dom-if" if="{{model.FoundSomebodies.length}}" restamp>
                 <ul class="autocomplete">
                     <template is="dom-repeat" items="{{model.FoundSomebodies}}">
@@ -43,7 +44,8 @@
                 <div class="invoice-item">
                     <!-- Display item properties and bind them for editing -->
                     <div class="invoice-item-cell">
-                        <input type="text" value="{{item.Description$::input}}" on-blur="clearFoundProducts" item-index="{{index}}" placeholder="Type to find" />
+                        <input type="text" value="{{item.Description$::input}}" placeholder="Type to find"
+                               clear="{{item.ClearFoundProducts$::blur}}" onblur="++this.clear;" />
                         <template is="dom-if" if="{{item.FoundProducts.length}}" restamp>
                             <ul class="autocomplete">
                                 <template is="dom-repeat" items="{{item.FoundProducts}}">
@@ -81,16 +83,4 @@
         <link is="puppet-redirect" history url$="{{model.RedirectUrl$}}">
         <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
     </template>
-    <script>
-        (function(){
-            // Add helper methods to `dom-bind` to increment different values on different events
-            var polymerAutoBinding = document.currentScript.previousElementSibling;
-            polymerAutoBinding.clearFoundSomebodies = function(){
-                polymerAutoBinding.model.ClearFoundSomebodies$++;
-            };
-            polymerAutoBinding.clearFoundProducts = function(event){
-                polymerAutoBinding.model.Items[event.target.itemIndex].ClearFoundProducts$++;
-            };
-        }());
-    </script>
 </template>
