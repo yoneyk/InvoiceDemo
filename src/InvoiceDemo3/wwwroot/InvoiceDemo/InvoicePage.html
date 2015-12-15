@@ -74,10 +74,10 @@
 
         <div>
             <!-- Trigger button handlers on click -->
-            <button value="{{model.AddRow$::click}}" onclick="++this.value">Add row</button>
-            <button value="{{model.Save$::click}}" onclick="++this.value">Save changes</button>
-            <button value="{{model.Cancel$::click}}" onclick="++this.value">Cancel changes</button>
-            <button value="{{model.Delete$::click}}" onclick="++this.value">Delete invoice</button>
+            <button value="{{model.AddRow$::click}}" onmousedown="++this.value">Add row</button>
+            <button value="{{model.Save$::click}}" onmousedown="++this.value">Save changes</button>
+            <button value="{{model.Cancel$::click}}" onmousedown="++this.value">Cancel changes</button>
+            <button value="{{model.Delete$::click}}" onmousedown="++this.value">Delete invoice</button>
         </div>
 
         <link is="puppet-redirect" history url$="{{model.RedirectUrl$}}">
