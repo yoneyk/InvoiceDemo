@@ -31,13 +31,21 @@ partial class InvoicePage : Page, IBound<Invoice> {
     }
 
     void Handle(Input.Delete action) {
-        if (Data == null) // Nothing to delete.
+        // Nothing to delete.
+        if (Data == null) {
             return;
+        }
 
-        foreach (var row in Data.Items) {
+        Invoice invoice = this.Data;
+
+        // We have to clean reference from veiw-model to database object manually before this bug is fixed: https://github.com/Starcounter/Starcounter/issues/2814
+        this.Data = null;
+
+        foreach (var row in invoice.Items) {
             row.Delete();
         }
-        Data.Delete();
+
+        invoice.Delete();
         Transaction.Commit();
         OnDeleted();
         RedirectUrl = "/invoicedemo"; //redirect to the home URL		
