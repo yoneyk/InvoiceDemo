@@ -14,7 +14,13 @@
     <link rel="import" src="/sys/polymer/polymer.html">
     <link rel="import" href="/sys/imported-template/imported-template.html">
     <link rel="stylesheet" href="/style.css">
+
+    <!--
+    In the latest release of puppet-redirect the src folder was removed.
+    Remove it from the href path if you use Starcounter version 2.1.x.
+    -->
     <link rel="import" href="/sys/puppet-redirect/src/puppet-redirect.html">
+
     <!-- starcounter-debug-aid gives you a nice debug window when pressed Ctrl+` -->
     <link rel="import" href="/sys/starcounter-debug-aid/src/starcounter-debug-aid.html">
     <!-- dom-bind-notifier makes Polymer's dom-bind observe changes -->
