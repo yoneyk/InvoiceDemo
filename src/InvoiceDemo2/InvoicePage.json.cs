@@ -38,7 +38,7 @@ partial class InvoicePage : Page, IBound<Invoice> {
 
         Invoice invoice = this.Data;
 
-        // We have to clean reference from veiw-model to database object manually before this bug is fixed: https://github.com/Starcounter/Starcounter/issues/2814
+        // We have to clean reference from view-model to database object manually before this bug is fixed: https://github.com/Starcounter/Starcounter/issues/2814
         this.Data = null;
 
         foreach (var row in invoice.Items) {
