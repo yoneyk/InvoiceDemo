@@ -10,7 +10,7 @@ class Program {
             } else {
                 page = Db.Scope<InvoicePage>(() => {
                     return new InvoicePage() {
-                        Html = "/InvoicePage.html",
+                        Html = "/InvoiceDemo/InvoicePage.html",
                         Data = new Invoice()
                     };
                 });

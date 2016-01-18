@@ -75,10 +75,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="wwwroot\InvoicePage.html" />
-    <Content Include="wwwroot\InvoicesPage.html" />
-    <Content Include="wwwroot\MasterPage.html" />
-    <Content Include="wwwroot\style.css" />
+    <Content Include="wwwroot\InvoiceDemo\InvoicePage.html" />
+    <Content Include="wwwroot\InvoiceDemo\InvoicesPage.html" />
+    <Content Include="wwwroot\InvoiceDemo\MasterPage.html" />
+    <Content Include="wwwroot\InvoiceDemo\style.css" />
   </ItemGroup>
   <ItemGroup>
     <TypedJSON Include="InvoicePage.json">

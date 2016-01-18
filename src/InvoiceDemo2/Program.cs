@@ -9,11 +9,11 @@ class Program {
                 master = (MasterPage)Session.Current.Data;
             } else {
                 master = new MasterPage() {
-                    Html = "/MasterPage.html"
+                    Html = "/InvoiceDemo/MasterPage.html"
                 };
                 master.Session = new Session(SessionOptions.PatchVersioning);
                 master.RecentInvoices = new InvoicesPage() {
-                    Html = "/InvoicesPage.html"
+                    Html = "/InvoiceDemo/InvoicesPage.html"
                 };
             }
 
@@ -26,7 +26,7 @@ class Program {
             MasterPage master = Self.GET<MasterPage>("/invoicedemo");
             master.FocusedInvoice = Db.Scope<InvoicePage>(() => {
                 var page = new InvoicePage() {
-                    Html = "/InvoicePage.html",
+                    Html = "/InvoiceDemo/InvoicePage.html",
                     Data = Db.SQL<Invoice>("SELECT i FROM Invoice i WHERE InvoiceNo = ?", InvoiceNo).First
                 };
 
@@ -47,7 +47,7 @@ class Program {
             MasterPage master = Self.GET<MasterPage>("/invoicedemo");
             master.FocusedInvoice = Db.Scope<InvoicePage>(() => {
                 var page = new InvoicePage() {
-                    Html = "/InvoicePage.html",
+                    Html = "/InvoiceDemo/InvoicePage.html",
                     Data = new Invoice()
                 };
 
