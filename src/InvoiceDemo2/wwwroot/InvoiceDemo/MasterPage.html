@@ -21,8 +21,6 @@
 
     <!-- starcounter-debug-aid gives you a nice debug window when pressed Ctrl+` -->
     <link rel="import" href="/sys/starcounter-debug-aid/src/starcounter-debug-aid.html">
-    <!-- dom-bind-notifier makes Polymer's dom-bind observe changes -->
-    <link rel="import" href="/sys/dom-bind-notifier/dom-bind-notifier.html">
 </head>
 <body>
 
@@ -60,8 +58,6 @@
         <!-- end right pane of the UI -->
         </section>
     </section>
-    <!-- Observe changes to given model, and notify Polymer's template -->
-    <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
 </template>
 
 <!-- Plug in client-server sync -->

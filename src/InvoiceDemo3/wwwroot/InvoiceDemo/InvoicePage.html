@@ -14,7 +14,7 @@
         <div class="subtitle">
             <label>Customer name</label>
             <!-- Display Name$ and bind it for editing -->
-            <input type="text" value="{{model.Name$::input}}" placeholder="Type to find" 
+            <input type="text" value="{{model.Name$::input}}" placeholder="Type to find"
                    clear="{{model.ClearFoundSomebodies$::blur}}" onblur="++this.clear;" />
             <template is="dom-if" if="{{model.FoundSomebodies.length}}" restamp>
                 <ul class="autocomplete">
@@ -81,6 +81,5 @@
         </div>
 
         <link is="puppet-redirect" history url$="{{model.RedirectUrl$}}">
-        <dom-bind-notifier path="model" observed-object="{{model}}" deep></dom-bind-notifier>
     </template>
 </template>
