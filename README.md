@@ -7,3 +7,7 @@ This is a series of tutorials about building your first in-memory computing app:
 - **InvoiceDemo3** - integrate your app with another apps running in the database
 
 #### Take the [step by step InvoiceDemo tutorial on starcounter.io](http://starcounter.io/tutorials/)
+
+## License
+
+MIT
