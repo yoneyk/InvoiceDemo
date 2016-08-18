@@ -77,6 +77,8 @@ class Program {
         });
 
         Handle.GET("/invoicedemo/menu", () => {
+            MasterPage master = Self.GET<MasterPage>("/invoicedemo");
+            master.ShowMenu = false;
             return new Page() { Html = "/InvoiceDemo/AppMenuPage.html" };
         });
 
