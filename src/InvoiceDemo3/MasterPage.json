@@ -1,6 +1,6 @@
 {
   "Html": "",
-  "ShowMenu": true,
+  "ShowOwnTopBarMenu": true,
   "RecentInvoices": {},
   "FocusedInvoice": {}
 }
