@@ -16,15 +16,7 @@
             "Description$": "",
             "Quantity$": 0,
             "Price$": 0.0,
-            "Total": 0.0,
-            "ClearFoundProducts$": 0,
-            "FoundProducts": [
-                {
-                    "Name": "",
-                    "Price": 0.0,
-                    "Choose$": 1
-                }
-            ]
+            "Total": 0.0
         }
     ],
     "AddRow$": 0,

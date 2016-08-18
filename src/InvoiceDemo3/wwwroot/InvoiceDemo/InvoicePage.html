@@ -43,19 +43,7 @@
                 -->
                 <div class="invoice-item">
                     <!-- Display item properties and bind them for editing -->
-                    <div class="invoice-item-cell">
-                        <input type="text" value="{{item.Description$::input}}" placeholder="Type to find"
-                               clear="{{item.ClearFoundProducts$::blur}}" onblur="++this.clear;" />
-                        <template is="dom-if" if="{{item.FoundProducts.length}}" restamp>
-                            <ul class="autocomplete">
-                                <template is="dom-repeat" items="{{item.FoundProducts}}">
-                                    <li>
-                                        <a value="{{item.Choose$::mousedown}}" onmousedown="++this.value" href="javascript:">{{item.Name}}</a>
-                                    </li>
-                                </template>
-                            </ul>
-                        </template>
-                    </div>
+                    <div class="invoice-item-cell"><input type="text" value="{{item.Description$::input}}"/></div>
                     <div class="invoice-item-cell"><input class="number" type="text" value="{{item.Quantity$::input}}"/></div>
                     <div class="invoice-item-cell"><input class="number" type="text" value="{{item.Price$::input}}"/></div>
                     <!-- Display readonly Total property -->

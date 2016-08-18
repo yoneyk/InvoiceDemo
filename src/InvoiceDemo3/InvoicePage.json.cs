@@ -88,33 +88,4 @@ partial class InvoicePage : Page, IBound<Invoice> {
             }
         }
     }
-
-    [InvoicePage_json.Items]
-    public partial class InvoicePageItems : Json, IBound<InvoiceRow> {
-        void Handle(Input.Description action) {
-            this.FoundProducts.Clear();
-
-            if (!string.IsNullOrEmpty(action.Value)) {
-                this.FoundProducts = Db.SQL("SELECT p FROM Simplified.Ring3.Product p WHERE p.Name LIKE ? ORDER BY p.Name FETCH ?", "%" + action.Value + "%", 8);
-            }
-        }
-
-        void Handle(Input.ClearFoundProducts action) {
-            this.FoundProducts.Clear();
-        }
-    }
-
-    [InvoicePage_json.Items.FoundProducts]
-    public partial class InvoicePageItemsFoundProducts : Json, IBound<Simplified.Ring3.Product> {
-        void Handle(Input.Choose action) {
-            this.ParentPage.Description = this.Name;
-            this.ParentPage.FoundProducts.Clear();
-        }
-
-        InvoicePageItems ParentPage {
-            get {
-                return this.Parent.Parent as InvoicePageItems;
-            }
-        }
-    }
 }
