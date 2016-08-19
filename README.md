@@ -10,7 +10,7 @@ This is a series of tutorials about building your first in-memory computing app:
 
 ## Requirements
 
-Requires Starcounter version 0.0.0
+Requires Starcounter version 2.2.1834
 
 ## License
 
