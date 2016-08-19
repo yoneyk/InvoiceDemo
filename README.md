@@ -8,6 +8,10 @@ This is a series of tutorials about building your first in-memory computing app:
 
 #### Take the [step by step InvoiceDemo tutorial on starcounter.io](http://starcounter.io/tutorials/)
 
+## Requirements
+
+Requires Starcounter version 0.0.0
+
 ## License
 
 MIT
